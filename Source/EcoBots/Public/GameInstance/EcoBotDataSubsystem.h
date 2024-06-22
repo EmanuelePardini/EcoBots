@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/EcoBotStatsComponent.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "EcoBotDataSubsystem.generated.h"
 
@@ -18,6 +19,12 @@ protected:
 	TArray<UMaterialInterface*> EcoBotMaterials = {nullptr, nullptr};
 	UPROPERTY(VisibleAnywhere)
 	FTransform EcoBotTransform;
+	UPROPERTY(VisibleAnywhere)
+	float Health;
+	UPROPERTY(VisibleAnywhere)
+	float Hunger;
+	UPROPERTY(VisibleAnywhere)
+	float Thirst;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -28,5 +35,9 @@ public:
 	FTransform GetEcoBotTransform();
 	UFUNCTION(BlueprintCallable)
 	void SetEcoBotTransform(FTransform NewTransform);
-	
+	UFUNCTION(BlueprintCallable)
+	TArray<float> GetEcoBotStats();
+	UFUNCTION(BlueprintCallable)
+	void SetEcoBotStats(float NewHealth, float NewHunger, float NewThirst);
+
 };

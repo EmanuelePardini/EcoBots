@@ -23,3 +23,21 @@ void UEcoBotDataSubsystem::SetEcoBotTransform(FTransform NewTransform)
 {
 	EcoBotTransform = NewTransform;
 }
+
+TArray<float> UEcoBotDataSubsystem::GetEcoBotStats()
+{
+	TArray<float> Stats;
+	Stats.Add(Health);
+	Stats.Add(Hunger);
+	Stats.Add(Thirst);
+
+	return Stats;
+}
+
+void UEcoBotDataSubsystem::SetEcoBotStats(float NewHealth, float NewHunger, float NewThirst)
+{
+	Health = NewHealth;
+	Hunger = NewHunger;
+	Thirst = NewThirst;
+}
+

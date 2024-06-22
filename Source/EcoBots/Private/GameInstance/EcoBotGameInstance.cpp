@@ -14,9 +14,7 @@ void UEcoBotGameInstance::LoadGameData_Implementation()
 		SaveGameRef = Cast<UEcoBotsSaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 		FLevelData LevelData = SaveGameRef->GetLevelData();
 		FCharacterData CharacterData = SaveGameRef->GetCharacterData();
-		UEcoBotDataSubsystem* EcoBotData = GetSubsystem<UEcoBotDataSubsystem>();
-		EcoBotData->SetEcoBotMaterials(CharacterData.BodyMat, CharacterData.FaceMat);
-		EcoBotData->SetEcoBotTransform(CharacterData.ActorTransform);
+		LoadCharacterData(CharacterData);
 		
 		UGameplayStatics::OpenLevel(GetWorld(), ContinueLevel);
 	}
@@ -29,6 +27,15 @@ void UEcoBotGameInstance::LoadGameData_Implementation()
 void UEcoBotGameInstance::SaveGameData_Implementation()
 {
 	UGameplayStatics::SaveGameToSlot(SaveGameRef, SlotName, 0);
+}
+
+void UEcoBotGameInstance::LoadCharacterData(FCharacterData CharacterData)
+{
+	UEcoBotDataSubsystem* EcoBotData = GetSubsystem<UEcoBotDataSubsystem>();
+	
+	EcoBotData->SetEcoBotMaterials(CharacterData.BodyMat, CharacterData.FaceMat);
+	EcoBotData->SetEcoBotTransform(CharacterData.ActorTransform);
+	EcoBotData->SetEcoBotStats(CharacterData.HealthValue, CharacterData.HungerValue, CharacterData.ThirstValue);
 }
 
 void UEcoBotGameInstance::NewGameData_Implementation()

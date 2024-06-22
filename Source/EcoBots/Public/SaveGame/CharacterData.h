@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "Components/EcoBotStatsComponent.h"
 #include "CharacterData.generated.h"
 class AEcoBotCharacter;
 
@@ -15,4 +16,10 @@ public:
 	UMaterialInterface* FaceMat;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTransform ActorTransform;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float HealthValue;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float HungerValue;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float ThirstValue;
 };

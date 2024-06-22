@@ -37,6 +37,8 @@ protected:
 	float RunSpeed = 500.f;
 
 	//Input States
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="States")
+	bool bIsPlayable = true;
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category="States")
 	bool IsInteracting = false;
 

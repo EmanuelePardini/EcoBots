@@ -116,6 +116,8 @@ void AEcoBotCharacter::EndInteract()
 
 void AEcoBotCharacter::LoadCharacterSaved()
 {
+	if(!bIsPlayable) return;
+	
 	//Get Character Data
 	UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
 	
@@ -123,20 +125,45 @@ void AEcoBotCharacter::LoadCharacterSaved()
 	{
 		//Set Materials
 		TArray<UMaterialInterface*> Materials = EcoBotData->GetEcoBotMaterials();
-		
-		if(Materials.IsEmpty()) return;
-		
-		for (int i = 0; i <= Materials.Num()-1; i++)
+		if(!Materials.IsEmpty())
 		{
-			if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
+			for (int i = 0; i <= Materials.Num()-1; i++)
+			{
+				if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
+			}
 		}
-		
 		
 		//Set Transform
 		FVector Translation = EcoBotData->GetEcoBotTransform().GetTranslation();
 		if(!Translation.IsZero())
 		{
 			SetActorTransform(EcoBotData->GetEcoBotTransform());
+		}
+
+		//Set Stats
+		if(EcoBotData->GetEcoBotStats().Num() > 0)
+		{
+			if(EcoBotData->GetEcoBotStats()[0] > 0)
+			{
+				StatsComponent->HealthStat.CurrentValue = EcoBotData->GetEcoBotStats()[0];
+				StatsComponent->HealthStat.PercentValue = StatsComponent->HealthStat.CurrentValue / StatsComponent->HealthStat.MaxValue;
+			}
+				
+			if(EcoBotData->GetEcoBotStats()[1] > 0)
+			{
+				StatsComponent->HungerStat.CurrentValue = EcoBotData->GetEcoBotStats()[1];
+				StatsComponent->HungerStat.PercentValue = StatsComponent->HungerStat.CurrentValue / StatsComponent->HungerStat.MaxValue;
+			}
+				
+			if(EcoBotData->GetEcoBotStats()[2] > 0)
+			{
+				StatsComponent->ThirstStat.CurrentValue = EcoBotData->GetEcoBotStats()[2];
+				StatsComponent->ThirstStat.PercentValue = StatsComponent->ThirstStat.CurrentValue / StatsComponent->ThirstStat.MaxValue;
+			}
+			
+			OnStatsChange(StatsComponent->HealthStat.PercentValue,
+			              StatsComponent->HungerStat.PercentValue,
+			               StatsComponent->ThirstStat.PercentValue);
 		}
 	}
 }
@@ -148,7 +175,9 @@ FCharacterData AEcoBotCharacter::GetCharacterData()
 	CharacterData.BodyMat = GetMesh()->GetMaterial(0);
 	CharacterData.FaceMat = GetMesh()->GetMaterial(1);
 	CharacterData.ActorTransform = GetActorTransform();
-	
+	CharacterData.HealthValue = StatsComponent->HealthStat.CurrentValue;
+	CharacterData.HungerValue = StatsComponent->HungerStat.CurrentValue;
+	CharacterData.ThirstValue = StatsComponent->ThirstStat.CurrentValue;
 	return CharacterData;
 	//TODO: Interactable only by owner/server(?)
 }

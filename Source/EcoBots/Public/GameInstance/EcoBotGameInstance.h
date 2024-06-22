@@ -28,6 +28,7 @@ public:
 	
 	virtual void LoadGameData_Implementation() override;
 	virtual void SaveGameData_Implementation() override;
+	void LoadCharacterData(FCharacterData CharacterData);
 	virtual void NewGameData_Implementation() override;
 	virtual UEcoBotsSaveGame* GetGameData_Implementation() override;
 	virtual void SaveLevelData_Implementation(FLevelData LevelData, FCharacterData CharacterData) override;
