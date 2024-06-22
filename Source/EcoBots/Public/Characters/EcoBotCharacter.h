@@ -77,6 +77,9 @@ public:
 	//Interaction Manage
 	void Interact();
 	void EndInteract();
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void Die();
 	
 	//References
 	UFUNCTION(BlueprintCallable)

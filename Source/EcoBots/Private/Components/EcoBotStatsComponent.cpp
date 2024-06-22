@@ -3,6 +3,10 @@
 
 #include "Components/EcoBotStatsComponent.h"
 
+#include "Characters/EcoBotCharacter.h"
+#include "GameInstance/EcoBotGameInstance.h"
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values for this component's properties
 UEcoBotStatsComponent::UEcoBotStatsComponent()
 {
@@ -124,6 +128,7 @@ void UEcoBotStatsComponent::ManageStatTimers(float DeltaTime)
 
 void UEcoBotStatsComponent::Die()
 {
-	//TODO: Load last save
+	AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
+	if(EcoBotCharacter) EcoBotCharacter->Die();
 }
 

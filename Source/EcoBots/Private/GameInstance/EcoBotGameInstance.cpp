@@ -15,13 +15,11 @@ void UEcoBotGameInstance::LoadGameData_Implementation()
 		FLevelData LevelData = SaveGameRef->GetLevelData();
 		FCharacterData CharacterData = SaveGameRef->GetCharacterData();
 		LoadCharacterData(CharacterData);
-		
-		UGameplayStatics::OpenLevel(GetWorld(), ContinueLevel);
 	}
-	else
-	{
-		Execute_NewGameData(this);
-	}
+	// else
+	// {
+	// 	Execute_NewGameData(this);
+	// }
 }
 
 void UEcoBotGameInstance::SaveGameData_Implementation()
@@ -40,8 +38,8 @@ void UEcoBotGameInstance::LoadCharacterData(FCharacterData CharacterData)
 
 void UEcoBotGameInstance::NewGameData_Implementation()
 {
+	if(!SaveGameRef) return;
 	SaveGameRef = Cast<UEcoBotsSaveGame>(UGameplayStatics::CreateSaveGameObject(UEcoBotsSaveGame::StaticClass()));
-	UGameplayStatics::OpenLevel(GetWorld(), NewGameLevel);
 }
 
 
@@ -52,6 +50,8 @@ UEcoBotsSaveGame* UEcoBotGameInstance::GetGameData_Implementation()
 
 void UEcoBotGameInstance::SaveLevelData_Implementation(FLevelData LevelData, FCharacterData CharacterData)
 {
+	if(!SaveGameRef) return;
+	
 	SaveGameRef->CharacterData = CharacterData;
 	SaveGameRef->LevelData = LevelData;
 	

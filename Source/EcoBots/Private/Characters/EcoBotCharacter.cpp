@@ -114,6 +114,7 @@ void AEcoBotCharacter::EndInteract()
 	InteractionComponent->EndInteract(this);
 }
 
+
 void AEcoBotCharacter::LoadCharacterSaved()
 {
 	if(!bIsPlayable) return;

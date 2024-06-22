@@ -15,11 +15,13 @@ class ECOBOTS_API ADayNightManager : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ADayNightManager();
-public:
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
 	UDirectionalLightComponent* DirectionalSunLight;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
 	float AdjustmentAngle = 90.f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	bool bIsNight;
 	
 protected:
 	// Called when the game starts or when spawned
