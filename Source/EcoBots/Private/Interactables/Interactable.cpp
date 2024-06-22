@@ -69,7 +69,15 @@ void AInteractable::SpawnItem(FVector SpawnLoc, FRotator SpawnRot)
 			{
 				for(int j = 0; j < Quantity; j++)
 				{
-					GetWorld()->SpawnActor<AInteractable>(InteractionDatas[i].ItemToSpawn,SpawnLoc,SpawnRot);
+					FVector RandomOffset = FVector(
+					FMath::RandRange(-InteractionDatas[i].ItemSpawnRadius, InteractionDatas[i].ItemSpawnRadius),
+					FMath::RandRange(-InteractionDatas[i].ItemSpawnRadius, InteractionDatas[i].ItemSpawnRadius),
+					InteractionDatas[i].ItemSpawnRadius);
+					
+					FVector RandomSpawnLoc = SpawnLoc + RandomOffset;
+					if(!InteractionDatas[i].bToInheritRotation) SpawnRot = FRotator(0,0,0);
+					
+					GetWorld()->SpawnActor<AInteractable>(InteractionDatas[i].ItemToSpawn,RandomSpawnLoc,SpawnRot);
 				}
 			}
 		}

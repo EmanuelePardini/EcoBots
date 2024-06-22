@@ -20,11 +20,17 @@ public:
 	int MaxQuantity;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interaction")
 	int MinQuantity;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interaction")
+	float ItemSpawnRadius;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Interaction")
+	bool bToInheritRotation;
 	
 	FInteractionData()
 		: ItemToSpawn(nullptr)
 		, MaxQuantity(3)
 		, MinQuantity(1)
+		, ItemSpawnRadius(100)
+		, bToInheritRotation(true)
 	{
 	}
 };
@@ -45,6 +51,7 @@ public:
 	float RechargeTimer = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Timer")
 	bool IsAvailable = true;
+
 	
 protected:
 	// Called when the game starts or when spawned

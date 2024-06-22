@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class ECOBOTS_API UInventoryItem : public UObject
 {
 	GENERATED_BODY()
@@ -17,6 +17,8 @@ class ECOBOTS_API UInventoryItem : public UObject
 protected:
 	UPROPERTY(EditAnywhere, Category="Setup")
 	FString ItemName;
+	UPROPERTY(EditAnywhere, Category="Setup")
+	UTexture2D* ItemIcon;
 	UPROPERTY(EditAnywhere, Category="Setup")
 	FString ItemType;
 	UPROPERTY(EditAnywhere, Category="Setup")

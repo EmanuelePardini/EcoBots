@@ -59,7 +59,7 @@ void UInteractionComponent::Interact(AEcoBotCharacter* InteractingChar)
 	//DrawDebugLine(Context, StartTrace, EndTrace, FColor::Green, false, 10.f);
 
 	if (GetWorld()->LineTraceMultiByChannel(HitResults, StartTrace, EndTrace, ECC_MAX, CollisionParams))
-	{ //TODO: Add Interaction Distance
+	{
 		//For all interaction activate the interactables
 		for(FHitResult Hit : HitResults)
 		{

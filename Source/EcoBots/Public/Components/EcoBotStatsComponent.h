@@ -12,10 +12,16 @@ struct FStat
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	FName StatName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	float MaxValue;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	float CurrentValue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float PercentValue;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Timer")
 	float DecrementDelay;
@@ -26,10 +32,13 @@ struct FStat
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Decrement")
 	float DecrementAmount;
 	
+	
 
 	FStat()
-		: MaxValue(1000.f)
+		: StatName("Stat")
+		, MaxValue(1000.f)
 		, CurrentValue(1000.f)
+		, PercentValue(1.f)
 		, DecrementDelay(60.f)
 		, DecrementTimer(0.f)
 		, DecrementAmount(-50.f)
@@ -54,6 +63,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FStat ThirstStat;
+
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnValueChanged,float, HealthPercent, float, HungerPercent, float, ThirstPercent);
+	FOnValueChanged OnValueChanged;
 
 protected:
 	// Called when the game starts

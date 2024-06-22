@@ -50,6 +50,12 @@ protected:
 	//Animations
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animations")
 	UEcoBotAnim* EcoBotAnim;
+
+	//UI
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
+	TSubclassOf<UUserWidget> EcoBotWidgetClass;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="UI")
+	UUserWidget* EcoBotWidgetInstance;
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -70,11 +76,17 @@ public:
 	void Interact();
 	void EndInteract();
 	
-	//Game Save
+	//References
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UCameraComponent* GetCamera(){return ThirdPersonCamera;}
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UEcoBotAnim* GetEcoBotAnim(){return EcoBotAnim;}
+
+	//UI
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnStatsChange(float HealthPercent, float HungerPercent, float ThirstPercent);
+
+	//Data Savings
 	UFUNCTION(BlueprintCallable)
 	void LoadCharacterSaved();
 	UFUNCTION(BlueprintCallable)

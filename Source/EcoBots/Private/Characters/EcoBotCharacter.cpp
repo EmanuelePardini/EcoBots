@@ -2,6 +2,8 @@
 
 
 #include "Characters/EcoBotCharacter.h"
+
+#include "Blueprint/UserWidget.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameInstance/EcoBotDataSubsystem.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -24,6 +26,7 @@ AEcoBotCharacter::AEcoBotCharacter()
 
 	//Components
 	StatsComponent = CreateDefaultSubobject<UEcoBotStatsComponent>("StatsComponent");
+	StatsComponent->OnValueChanged.AddDynamic(this, &AEcoBotCharacter::OnStatsChange);
 	InteractionComponent = CreateDefaultSubobject<UInteractionComponent>("InteractionComponent");
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("InventoryComponent");
 }
@@ -32,7 +35,22 @@ AEcoBotCharacter::AEcoBotCharacter()
 void AEcoBotCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	//Reference the Animation instance
 	EcoBotAnim = Cast<UEcoBotAnim>(GetMesh()->GetAnimInstance());
+	
+	if (EcoBotWidgetClass)
+	{
+		// Create the widget instance
+		EcoBotWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), EcoBotWidgetClass);
+
+		if (EcoBotWidgetInstance)
+		{
+			// Add the widget to the viewport
+			EcoBotWidgetInstance->AddToViewport();
+		}
+	}
+
+	//Load the character saved data
 	LoadCharacterSaved();
 }
 

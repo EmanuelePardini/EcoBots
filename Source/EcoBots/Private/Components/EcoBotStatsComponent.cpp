@@ -11,18 +11,24 @@ UEcoBotStatsComponent::UEcoBotStatsComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// Initialize default values for stats
+	HealthStat.StatName = "HealthBar";
 	HealthStat.MaxValue = 1000.f;
 	HealthStat.CurrentValue = 1000.f;
+	HealthStat.PercentValue = HealthStat.CurrentValue / HealthStat.MaxValue;
 	HealthStat.DecrementDelay = 30.f;
 	HealthStat.DecrementAmount = -50.f;
 
+	HungerStat.StatName = "HungerBar";
 	HungerStat.MaxValue = 1000.f;
 	HungerStat.CurrentValue = 1000.f;
+	HungerStat.PercentValue = HungerStat.CurrentValue / HungerStat.MaxValue;
 	HungerStat.DecrementDelay = 60.f;
 	HungerStat.DecrementAmount = -50.f;
 
+	ThirstStat.StatName = "ThirstBar";
 	ThirstStat.MaxValue = 1000.f;
 	ThirstStat.CurrentValue = 1000.f;
+	ThirstStat.PercentValue = ThirstStat.CurrentValue / ThirstStat.MaxValue;
 	ThirstStat.DecrementDelay = 40.f;
 	ThirstStat.DecrementAmount = -50.f;
 }
@@ -57,6 +63,9 @@ void UEcoBotStatsComponent::IncrementHealth(float Amount)
 		HealthStat.CurrentValue = 0;
 		Die();
 	}
+
+	HealthStat.PercentValue = HealthStat.CurrentValue / HealthStat.MaxValue;
+	OnValueChanged.Broadcast(HealthStat.PercentValue, HungerStat.PercentValue, ThirstStat.PercentValue);
 }
 
 void UEcoBotStatsComponent::IncrementHunger(float Amount)
@@ -65,6 +74,9 @@ void UEcoBotStatsComponent::IncrementHunger(float Amount)
 
 	if (HungerStat.CurrentValue > HungerStat.MaxValue) HungerStat.CurrentValue = HungerStat.MaxValue;
 	if (HungerStat.CurrentValue <= 0) HungerStat.CurrentValue = 0;
+
+	HungerStat.PercentValue = HungerStat.CurrentValue / HungerStat.MaxValue;
+	OnValueChanged.Broadcast(HealthStat.PercentValue, HungerStat.PercentValue, ThirstStat.PercentValue);
 }
 
 void UEcoBotStatsComponent::IncrementThirst(float Amount)
@@ -73,6 +85,9 @@ void UEcoBotStatsComponent::IncrementThirst(float Amount)
 
 	if (ThirstStat.CurrentValue > ThirstStat.MaxValue) ThirstStat.CurrentValue = ThirstStat.MaxValue;
 	if (ThirstStat.CurrentValue <= 0) ThirstStat.CurrentValue = 0;
+
+	ThirstStat.PercentValue = ThirstStat.CurrentValue / ThirstStat.MaxValue;
+	OnValueChanged.Broadcast(HealthStat.PercentValue, HungerStat.PercentValue, ThirstStat.PercentValue);
 }
 
 void UEcoBotStatsComponent::ManageStatTimers(float DeltaTime)

@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class ECOBOTS_API UInventorySlot : public UObject
 {
 	GENERATED_BODY()
