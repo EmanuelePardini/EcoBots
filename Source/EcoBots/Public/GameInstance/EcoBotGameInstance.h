@@ -20,10 +20,6 @@ public:
 	UEcoBotsSaveGame* SaveGameRef;
 	UPROPERTY(EditAnywhere)
 	FString SlotName = "EcoBotOne"; //Savings defined in SelectionSlotMenu
-	UPROPERTY(EditAnywhere)
-	FName NewGameLevel = "EcoBotGen";
-	UPROPERTY(EditAnywhere)
-	FName ContinueLevel = "EcoBotGame";
 
 	
 	virtual void LoadGameData_Implementation() override;
