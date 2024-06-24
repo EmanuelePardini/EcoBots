@@ -11,6 +11,7 @@
 #include "Components/InventoryComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameInstance/EcoBotDataSubsystem.h"
 #include "SaveGame/CharacterData.h"
 #include "EcoBotCharacter.generated.h"
 
@@ -95,6 +96,14 @@ public:
 	//Data Savings
 	UFUNCTION(BlueprintCallable)
 	void LoadCharacterSaved();
+	UFUNCTION(BlueprintCallable)
+	void LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData);
+	UFUNCTION(BlueprintCallable)
+	void LoadTransformData(UEcoBotDataSubsystem* EcoBotData);
+	UFUNCTION(BlueprintCallable)
+	void LoadStatsData(UEcoBotDataSubsystem* EcoBotData);
+	UFUNCTION(BlueprintCallable)
+	void LoadInventoryData(UEcoBotDataSubsystem* EcoBotData);
 	UFUNCTION(BlueprintCallable)
 	FCharacterData GetCharacterData();
 };

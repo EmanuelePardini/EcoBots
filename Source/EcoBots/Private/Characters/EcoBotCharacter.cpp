@@ -117,62 +117,72 @@ void AEcoBotCharacter::EndInteract()
 
 void AEcoBotCharacter::LoadCharacterSaved()
 {
-	if(!bIsPlayable) return;
-	
 	//Get Character Data
 	UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
 	
-	if(EcoBotData)
+	if(!EcoBotData || !bIsPlayable) return;
+	
+	LoadMaterialsData(EcoBotData);
+	LoadTransformData(EcoBotData);
+	LoadStatsData(EcoBotData);
+	LoadInventoryData(EcoBotData);
+}
+
+void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
+{
+	TArray<UMaterialInterface*> Materials = EcoBotData->GetEcoBotMaterials();
+	if(!Materials.IsEmpty())
 	{
-		//Set Materials
-		TArray<UMaterialInterface*> Materials = EcoBotData->GetEcoBotMaterials();
-		if(!Materials.IsEmpty())
+		for (int i = 0; i <= Materials.Num()-1; i++)
 		{
-			for (int i = 0; i <= Materials.Num()-1; i++)
-			{
-				if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
-			}
+			if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
 		}
-		
-		//Set Transform
-		FVector Translation = EcoBotData->GetEcoBotTransform().GetTranslation();
-		if(!Translation.IsZero())
-		{
-			SetActorTransform(EcoBotData->GetEcoBotTransform());
-		}
+	}
+}
 
-		//Set Stats
-		if(EcoBotData->GetEcoBotStats().Num() > 0)
+void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
+{
+	FVector Translation = EcoBotData->GetEcoBotTransform().GetTranslation();
+	if(!Translation.IsZero())
+	{
+		SetActorTransform(EcoBotData->GetEcoBotTransform());
+	}
+}
+
+void AEcoBotCharacter::LoadStatsData(UEcoBotDataSubsystem* EcoBotData)
+{
+	if(EcoBotData->GetEcoBotStats().Num() > 0)
+	{
+		if(EcoBotData->GetEcoBotStats()[0] > 0)
 		{
-			if(EcoBotData->GetEcoBotStats()[0] > 0)
-			{
-				StatsComponent->HealthStat.CurrentValue = EcoBotData->GetEcoBotStats()[0];
-				StatsComponent->HealthStat.PercentValue = StatsComponent->HealthStat.CurrentValue / StatsComponent->HealthStat.MaxValue;
-			}
+			StatsComponent->HealthStat.CurrentValue = EcoBotData->GetEcoBotStats()[0];
+			StatsComponent->HealthStat.PercentValue = StatsComponent->HealthStat.CurrentValue / StatsComponent->HealthStat.MaxValue;
+		}
 				
-			if(EcoBotData->GetEcoBotStats()[1] > 0)
-			{
-				StatsComponent->HungerStat.CurrentValue = EcoBotData->GetEcoBotStats()[1];
-				StatsComponent->HungerStat.PercentValue = StatsComponent->HungerStat.CurrentValue / StatsComponent->HungerStat.MaxValue;
-			}
+		if(EcoBotData->GetEcoBotStats()[1] > 0)
+		{
+			StatsComponent->HungerStat.CurrentValue = EcoBotData->GetEcoBotStats()[1];
+			StatsComponent->HungerStat.PercentValue = StatsComponent->HungerStat.CurrentValue / StatsComponent->HungerStat.MaxValue;
+		}
 				
-			if(EcoBotData->GetEcoBotStats()[2] > 0)
-			{
-				StatsComponent->ThirstStat.CurrentValue = EcoBotData->GetEcoBotStats()[2];
-				StatsComponent->ThirstStat.PercentValue = StatsComponent->ThirstStat.CurrentValue / StatsComponent->ThirstStat.MaxValue;
-			}
+		if(EcoBotData->GetEcoBotStats()[2] > 0)
+		{
+			StatsComponent->ThirstStat.CurrentValue = EcoBotData->GetEcoBotStats()[2];
+			StatsComponent->ThirstStat.PercentValue = StatsComponent->ThirstStat.CurrentValue / StatsComponent->ThirstStat.MaxValue;
+		}
 			
-			OnStatsChange(StatsComponent->HealthStat.PercentValue,
-			              StatsComponent->HungerStat.PercentValue,
-			               StatsComponent->ThirstStat.PercentValue);
-		}
+		OnStatsChange(StatsComponent->HealthStat.PercentValue,
+					  StatsComponent->HungerStat.PercentValue,
+					   StatsComponent->ThirstStat.PercentValue);
+	}
+}
 
-		//Set Inventory
-		if(!EcoBotData->GetEcoBotInventory().IsEmpty())
-		{
-			TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
-			InventoryComponent->LoadInventory(InventoryInfo);
-		}
+void AEcoBotCharacter::LoadInventoryData(UEcoBotDataSubsystem* EcoBotData)
+{
+	if(!EcoBotData->GetEcoBotInventory().IsEmpty())
+	{
+		TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
+		InventoryComponent->LoadInventory(InventoryInfo);
 	}
 }
 
