@@ -27,6 +27,9 @@ struct FStat
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Decrement")
 	float DecrementAmount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Decrement")
+	bool bToUse;
 	
 	
 
@@ -38,6 +41,7 @@ struct FStat
 		, DecrementDelay(60.f)
 		, DecrementTimer(0.f)
 		, DecrementAmount(-50.f)
+		, bToUse(true)
 	{
 	}
 };

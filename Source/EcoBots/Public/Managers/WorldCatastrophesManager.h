@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/EcoBotStatsComponent.h"
 #include "GameFramework/Actor.h"
 #include "WorldCatastrophesManager.generated.h"
 
@@ -14,6 +15,16 @@ class ECOBOTS_API AWorldCatastrophesManager : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AWorldCatastrophesManager();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	float BaseDuration = 360;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	float DurationRange = 180;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Setup")
+	bool bIsActive = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	UEcoBotStatsComponent* WorldStatsComponent;
+	
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,5 +33,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	void ManageCatastrophes(float DeltaTime);
 };

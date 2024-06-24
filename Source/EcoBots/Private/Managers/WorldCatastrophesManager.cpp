@@ -8,6 +8,9 @@ AWorldCatastrophesManager::AWorldCatastrophesManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	WorldStatsComponent = CreateDefaultSubobject<UEcoBotStatsComponent>("WorldStats");
+	WorldStatsComponent->HungerStat.bToUse = false;
+	WorldStatsComponent->ThirstStat.bToUse = false;
 
 }
 
@@ -23,5 +26,10 @@ void AWorldCatastrophesManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AWorldCatastrophesManager::ManageCatastrophes(float DeltaTime)
+{
+	
 }
 

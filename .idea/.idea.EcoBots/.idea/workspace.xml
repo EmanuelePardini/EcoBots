@@ -9,9 +9,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9706779c-6c53-4da7-a637-e13cf4281158" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/GameInstance/EcoBotDataSubsystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/GameInstance/EcoBotDataSubsystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/EcoBotStatsComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/EcoBotStatsComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/HealthComponent.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Managers/WorldCatastrophesManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Managers/WorldCatastrophesManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/HealthComponent.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/Stat.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/Stat.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Managers/WorldCatastrophesManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Managers/WorldCatastrophesManager.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +192,7 @@
       <workItem from="1719141770203" duration="4546000" />
       <workItem from="1719219157346" duration="2604000" />
       <workItem from="1719233317978" duration="17875000" />
-      <workItem from="1719269521075" duration="1153000" />
+      <workItem from="1719269521075" duration="3097000" />
     </task>
     <servers />
   </component>
