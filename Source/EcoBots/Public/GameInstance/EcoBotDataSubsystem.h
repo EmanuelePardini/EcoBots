@@ -22,11 +22,11 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	FTransform EcoBotTransform;
 	UPROPERTY(VisibleAnywhere)
-	float Health;
+	float Health = -1; //-1 means Not Initialized
 	UPROPERTY(VisibleAnywhere)
-	float Hunger;
+	float Hunger = -1; //-1 means Not Initialized
 	UPROPERTY(VisibleAnywhere)
-	float Thirst;
+	float Thirst = -1; //-1 means Not Initialized
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo;
 
