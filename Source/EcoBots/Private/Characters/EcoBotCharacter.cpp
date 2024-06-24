@@ -166,6 +166,12 @@ void AEcoBotCharacter::LoadCharacterSaved()
 			              StatsComponent->HungerStat.PercentValue,
 			               StatsComponent->ThirstStat.PercentValue);
 		}
+
+		//Set Inventory
+		// if(EcoBotData->GetEcoBotInventory())
+		// {
+		// 	InventoryComponent->MoveAll(EcoBotData->GetEcoBotInventory());
+		// }
 	}
 }
 

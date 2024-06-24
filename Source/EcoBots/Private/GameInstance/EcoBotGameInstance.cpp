@@ -34,11 +34,11 @@ void UEcoBotGameInstance::LoadCharacterData(FCharacterData CharacterData)
 	EcoBotData->SetEcoBotMaterials(CharacterData.BodyMat, CharacterData.FaceMat);
 	EcoBotData->SetEcoBotTransform(CharacterData.ActorTransform);
 	EcoBotData->SetEcoBotStats(CharacterData.HealthValue, CharacterData.HungerValue, CharacterData.ThirstValue);
+	// EcoBotData->SetEcoBotInventory(CharacterData.Inventory);
 }
 
 void UEcoBotGameInstance::NewGameData_Implementation()
 {
-	if(!SaveGameRef) return;
 	SaveGameRef = Cast<UEcoBotsSaveGame>(UGameplayStatics::CreateSaveGameObject(UEcoBotsSaveGame::StaticClass()));
 }
 

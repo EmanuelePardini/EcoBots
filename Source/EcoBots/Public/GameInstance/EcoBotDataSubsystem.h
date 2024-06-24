@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/EcoBotStatsComponent.h"
+#include "Components/InventoryComponent.h"
+#include "Items/InventoryItem.h"
+#include "Items/InventorySlot.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "EcoBotDataSubsystem.generated.h"
 
@@ -25,6 +27,8 @@ protected:
 	float Hunger;
 	UPROPERTY(VisibleAnywhere)
 	float Thirst;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UInventoryComponent* Inventory;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -39,5 +43,9 @@ public:
 	TArray<float> GetEcoBotStats();
 	UFUNCTION(BlueprintCallable)
 	void SetEcoBotStats(float NewHealth, float NewHunger, float NewThirst);
+	// UFUNCTION(BlueprintCallable)
+	// UInventoryComponent* GetEcoBotInventory();
+	// UFUNCTION(BlueprintCallable)
+	// void SetEcoBotInventory(UInventoryComponent* NewInventory);
 
 };

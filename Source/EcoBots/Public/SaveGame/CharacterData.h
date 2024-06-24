@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "Components/EcoBotStatsComponent.h"
+#include "Components/InventoryComponent.h"
 #include "CharacterData.generated.h"
 class AEcoBotCharacter;
 
@@ -22,4 +22,6 @@ public:
 	float HungerValue;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float ThirstValue;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// UInventoryComponent* Inventory;
 };

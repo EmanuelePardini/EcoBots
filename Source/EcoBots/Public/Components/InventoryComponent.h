@@ -25,7 +25,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<UInventorySlot*> InventoryArray;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
-	int InventoryLength = 5;
+	int InventoryLength = 20;
 	
 	// Called when the game starts
 	virtual void BeginPlay() override;
