@@ -49,6 +49,7 @@ protected:
 	UInteractionComponent* InteractionComponent;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Components")
 	UInventoryComponent* InventoryComponent;
+	
 	//Animations
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animations")
 	UEcoBotAnim* EcoBotAnim;

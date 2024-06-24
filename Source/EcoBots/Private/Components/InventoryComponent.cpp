@@ -167,3 +167,35 @@ bool UInventoryComponent::DropItem(bool RemoveHalf)
 	return true;
 }
 
+TMap<TSubclassOf<UInventoryItem>, float> UInventoryComponent::SaveInventory()
+{
+	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo;
+	
+	for(int i = 0; i < InventoryArray.Num(); i++)
+	{
+		if(InventoryArray[i])
+		{
+			InventoryInfo.Add(InventoryArray[i]->GetItemType(), InventoryArray[i]->Quantity);
+		}
+	}
+
+	return InventoryInfo;
+}
+
+void UInventoryComponent::LoadInventory(TMap<TSubclassOf<UInventoryItem>, float> Item)
+{
+	// Iterate through the passed map to load items into the inventory
+	for (const TPair<TSubclassOf<UInventoryItem>, float>& ItemData : Item)
+	{
+		// Create a new inventory slot
+		UInventorySlot* NewSlot = NewObject<UInventorySlot>();
+        
+		// Initialize the new slot with the item type and quantity
+		NewSlot->Init(ItemData.Value, ItemData.Key);
+        
+		// Add the new slot to the inventory map and array
+		InventoryMap.Add(ItemData.Key, NewSlot);
+		InventoryArray.Add(NewSlot);
+	}
+}
+

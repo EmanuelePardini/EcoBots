@@ -168,10 +168,11 @@ void AEcoBotCharacter::LoadCharacterSaved()
 		}
 
 		//Set Inventory
-		// if(EcoBotData->GetEcoBotInventory())
-		// {
-		// 	InventoryComponent->MoveAll(EcoBotData->GetEcoBotInventory());
-		// }
+		if(!EcoBotData->GetEcoBotInventory().IsEmpty())
+		{
+			TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
+			InventoryComponent->LoadInventory(InventoryInfo);
+		}
 	}
 }
 
@@ -185,6 +186,7 @@ FCharacterData AEcoBotCharacter::GetCharacterData()
 	CharacterData.HealthValue = StatsComponent->HealthStat.CurrentValue;
 	CharacterData.HungerValue = StatsComponent->HungerStat.CurrentValue;
 	CharacterData.ThirstValue = StatsComponent->ThirstStat.CurrentValue;
+	CharacterData.InventoryInfo = InventoryComponent->SaveInventory();
 	return CharacterData;
 	//TODO: Interactable only by owner/server(?)
 }

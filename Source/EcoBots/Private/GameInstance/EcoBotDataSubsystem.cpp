@@ -41,13 +41,13 @@ void UEcoBotDataSubsystem::SetEcoBotStats(float NewHealth, float NewHunger, floa
 	Thirst = NewThirst;
 }
 
-// UInventoryComponent* UEcoBotDataSubsystem::GetEcoBotInventory()
-// {
-// 	return Inventory;
-// }
-//
-// void UEcoBotDataSubsystem::SetEcoBotInventory(UInventoryComponent* NewInventory)
-// {
-// 	Inventory = NewInventory;
-// }
+TMap<TSubclassOf<UInventoryItem>, float> UEcoBotDataSubsystem::GetEcoBotInventory()
+{
+	return InventoryInfo;
+}
+
+void UEcoBotDataSubsystem::SetEcoBotInventory(TMap<TSubclassOf<UInventoryItem>, float> NewInventoryInfo)
+{
+	InventoryInfo = NewInventoryInfo;
+}
 

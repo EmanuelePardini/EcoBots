@@ -43,4 +43,8 @@ public:
 	bool MoveAll(UInventoryComponent* NewInventory);
 	UFUNCTION(BlueprintCallable)
 	bool DropItem(bool RemoveHalf = false);
+	UFUNCTION(BlueprintCallable)
+	TMap<TSubclassOf<UInventoryItem>, float> SaveInventory();
+	UFUNCTION(BlueprintCallable)
+	void LoadInventory(TMap<TSubclassOf<UInventoryItem>, float> Item);
 };

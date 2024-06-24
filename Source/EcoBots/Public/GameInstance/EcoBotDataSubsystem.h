@@ -28,7 +28,7 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	float Thirst;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	UInventoryComponent* Inventory;
+	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -43,9 +43,9 @@ public:
 	TArray<float> GetEcoBotStats();
 	UFUNCTION(BlueprintCallable)
 	void SetEcoBotStats(float NewHealth, float NewHunger, float NewThirst);
-	// UFUNCTION(BlueprintCallable)
-	// UInventoryComponent* GetEcoBotInventory();
-	// UFUNCTION(BlueprintCallable)
-	// void SetEcoBotInventory(UInventoryComponent* NewInventory);
+	UFUNCTION(BlueprintCallable)
+	TMap<TSubclassOf<UInventoryItem>, float> GetEcoBotInventory();
+	UFUNCTION(BlueprintCallable)
+	void SetEcoBotInventory(TMap<TSubclassOf<UInventoryItem>, float>  NewInventoryInfo);
 
 };

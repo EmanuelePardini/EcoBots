@@ -34,7 +34,7 @@ void UEcoBotGameInstance::LoadCharacterData(FCharacterData CharacterData)
 	EcoBotData->SetEcoBotMaterials(CharacterData.BodyMat, CharacterData.FaceMat);
 	EcoBotData->SetEcoBotTransform(CharacterData.ActorTransform);
 	EcoBotData->SetEcoBotStats(CharacterData.HealthValue, CharacterData.HungerValue, CharacterData.ThirstValue);
-	// EcoBotData->SetEcoBotInventory(CharacterData.Inventory);
+	EcoBotData->SetEcoBotInventory(CharacterData.InventoryInfo);
 }
 
 void UEcoBotGameInstance::NewGameData_Implementation()
