@@ -36,15 +36,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UFUNCTION()
-	void IncrementHealth(float Amount);
-	UFUNCTION()
-	void IncrementHunger(float Amount);
-	UFUNCTION()
-	void IncrementThirst(float Amount);
-
+	void IncrementStat(FStat& Stat, float Amount);
 	UFUNCTION()
 	void ManageStatTimers(float DeltaTime);
-
+	UFUNCTION()
+	void UpdateStat(FStat& Stat, float Value);
 	UFUNCTION()
 	void Die();
 };

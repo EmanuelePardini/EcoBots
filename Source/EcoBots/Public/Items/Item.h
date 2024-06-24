@@ -27,4 +27,5 @@ public:
 	FORCEINLINE TSubclassOf<UInventoryItem> GetItemData() const {return ItemData;}
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void Interact(AEcoBotCharacter* InteractingChar) override;
+	void Rotate(float DeltaTime);
 };

@@ -1,30 +1,27 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Characters/EcoBotCharacter.h"
 
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameInstance/EcoBotDataSubsystem.h"
-#include "Particles/ParticleSystemComponent.h"
 #include "SaveGame/CharacterData.h"
 
 // Sets default values
 AEcoBotCharacter::AEcoBotCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this character to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	//Camera Settings
+
+	// Camera Settings
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
 	CameraBoom->SetupAttachment(RootComponent);
 	ThirdPersonCamera = CreateDefaultSubobject<UCameraComponent>("ThirdPersonCamera");
 	ThirdPersonCamera->SetupAttachment(CameraBoom);
 
-	//Movement
+	// Movement
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 
-	//Components
+	// Components
 	StatsComponent = CreateDefaultSubobject<UEcoBotStatsComponent>("StatsComponent");
 	StatsComponent->OnValueChanged.AddDynamic(this, &AEcoBotCharacter::OnStatsChange);
 	InteractionComponent = CreateDefaultSubobject<UInteractionComponent>("InteractionComponent");
@@ -35,7 +32,8 @@ AEcoBotCharacter::AEcoBotCharacter()
 void AEcoBotCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	//Reference the Animation instance
+
+	// Reference the Animation instance
 	EcoBotAnim = Cast<UEcoBotAnim>(GetMesh()->GetAnimInstance());
 	
 	if (EcoBotWidgetClass)
@@ -50,7 +48,7 @@ void AEcoBotCharacter::BeginPlay()
 		}
 	}
 
-	//Load the character saved data
+	// Load the character saved data
 	LoadCharacterSaved();
 }
 
@@ -63,30 +61,33 @@ void AEcoBotCharacter::Tick(float DeltaTime)
 
 void AEcoBotCharacter::Move(const FInputActionValue& Value)
 {
+	// Prevent movement if the character is interacting
 	if(IsInteracting) return;
 
-	// Obtains the controller's rotation and create a rotation on the yaw axis
+	// Obtain the controller's rotation and create a rotation on the yaw axis
 	FVector2d MovementValue = Value.Get<FVector2d>();
 	const FRotator Rotation = Controller->GetControlRotation();
 	const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-	// Gets the forward and right directions based on the Yaw rotation
+	// Get the forward and right directions based on the Yaw rotation
 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-	// Adds movement input along the forward axis (ForwardDirection) and the right axis (RightDirection)
+	// Add movement input along the forward axis (ForwardDirection) and the right axis (RightDirection)
 	AddMovementInput(ForwardDirection, MovementValue.Y);
 	AddMovementInput(RightDirection, MovementValue.X);
 }
 
 void AEcoBotCharacter::DoJump()
 {
+	// Prevent jumping if the character is interacting
 	if(IsInteracting) return;
 	Jump();
 }
 
 void AEcoBotCharacter::Run()
 {
+	// Prevent running if the character is interacting
 	if(IsInteracting) return;
 	
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
@@ -94,6 +95,7 @@ void AEcoBotCharacter::Run()
 
 void AEcoBotCharacter::EndRun()
 {
+	// Prevent ending run if the character is interacting
 	if(IsInteracting) return;
 	
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
@@ -101,7 +103,8 @@ void AEcoBotCharacter::EndRun()
 
 void AEcoBotCharacter::Interact()
 {
-	if(EcoBotAnim)EcoBotAnim->HasInteracted = true;
+	// Set interaction state and trigger the interaction animation
+	if(EcoBotAnim) EcoBotAnim->HasInteracted = true;
 	IsInteracting = true;
 
 	InteractionComponent->Interact(this);
@@ -109,19 +112,21 @@ void AEcoBotCharacter::Interact()
 
 void AEcoBotCharacter::EndInteract()
 {
-	if(EcoBotAnim)EcoBotAnim->HasInteracted = false;
+	// Reset interaction state and end the interaction animation
+	if(EcoBotAnim) EcoBotAnim->HasInteracted = false;
 	IsInteracting = false;
 	InteractionComponent->EndInteract(this);
 }
 
-
 void AEcoBotCharacter::LoadCharacterSaved()
 {
-	//Get Character Data
+	// Get Character Data
 	UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
 	
+	// Check if data is valid and the character is playable
 	if(!EcoBotData || !bIsPlayable) return;
 	
+	// Load different parts of the character data
 	LoadMaterialsData(EcoBotData);
 	LoadTransformData(EcoBotData);
 	LoadStatsData(EcoBotData);
@@ -130,64 +135,46 @@ void AEcoBotCharacter::LoadCharacterSaved()
 
 void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
 {
+	// Load and set materials from the saved data
 	TArray<UMaterialInterface*> Materials = EcoBotData->GetEcoBotMaterials();
-	if(!Materials.IsEmpty())
+	for (int i = 0; i < Materials.Num(); i++)
 	{
-		for (int i = 0; i <= Materials.Num()-1; i++)
-		{
-			if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
-		}
+		if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
 	}
 }
 
 void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
 {
+	// Load and set the transform from the saved data
 	FVector Translation = EcoBotData->GetEcoBotTransform().GetTranslation();
-	if(!Translation.IsZero())
-	{
-		SetActorTransform(EcoBotData->GetEcoBotTransform());
-	}
+	if(!Translation.IsZero()) SetActorTransform(EcoBotData->GetEcoBotTransform());
 }
 
 void AEcoBotCharacter::LoadStatsData(UEcoBotDataSubsystem* EcoBotData)
 {
-	if(EcoBotData->GetEcoBotStats().Num() > 0)
+	// Load and set the character stats from the saved data
+	const TArray<float>& Stats = EcoBotData->GetEcoBotStats();
+	if (Stats.Num() > 0)
 	{
-		if(EcoBotData->GetEcoBotStats()[0] > 0)
-		{
-			StatsComponent->HealthStat.CurrentValue = EcoBotData->GetEcoBotStats()[0];
-			StatsComponent->HealthStat.PercentValue = StatsComponent->HealthStat.CurrentValue / StatsComponent->HealthStat.MaxValue;
-		}
-				
-		if(EcoBotData->GetEcoBotStats()[1] > 0)
-		{
-			StatsComponent->HungerStat.CurrentValue = EcoBotData->GetEcoBotStats()[1];
-			StatsComponent->HungerStat.PercentValue = StatsComponent->HungerStat.CurrentValue / StatsComponent->HungerStat.MaxValue;
-		}
-				
-		if(EcoBotData->GetEcoBotStats()[2] > 0)
-		{
-			StatsComponent->ThirstStat.CurrentValue = EcoBotData->GetEcoBotStats()[2];
-			StatsComponent->ThirstStat.PercentValue = StatsComponent->ThirstStat.CurrentValue / StatsComponent->ThirstStat.MaxValue;
-		}
-			
-		OnStatsChange(StatsComponent->HealthStat.PercentValue,
-					  StatsComponent->HungerStat.PercentValue,
-					   StatsComponent->ThirstStat.PercentValue);
+		//Load the last stat value and align all parameters
+		if (Stats[0] > 0) StatsComponent->UpdateStat(StatsComponent->HealthStat, Stats[0]);
+		if (Stats[1] > 0) StatsComponent->UpdateStat(StatsComponent->HungerStat, Stats[1]);
+		if (Stats[2] > 0) StatsComponent->UpdateStat(StatsComponent->ThirstStat, Stats[2]);
+
+		OnStatsChange(StatsComponent->HealthStat.PercentValue, StatsComponent->HungerStat.PercentValue, StatsComponent->ThirstStat.PercentValue);
 	}
 }
 
 void AEcoBotCharacter::LoadInventoryData(UEcoBotDataSubsystem* EcoBotData)
 {
-	if(!EcoBotData->GetEcoBotInventory().IsEmpty())
-	{
-		TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
-		InventoryComponent->LoadInventory(InventoryInfo);
-	}
+	// Load and set the inventory from the saved data
+	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
+	if(!EcoBotData->GetEcoBotInventory().IsEmpty()) InventoryComponent->LoadInventory(InventoryInfo);
 }
 
 FCharacterData AEcoBotCharacter::GetCharacterData()
 {
+	// Collect and return the character's current data
 	FCharacterData CharacterData;
 
 	CharacterData.BodyMat = GetMesh()->GetMaterial(0);
@@ -198,5 +185,6 @@ FCharacterData AEcoBotCharacter::GetCharacterData()
 	CharacterData.ThirstValue = StatsComponent->ThirstStat.CurrentValue;
 	CharacterData.InventoryInfo = InventoryComponent->SaveInventory();
 	return CharacterData;
-	//TODO: Interactable only by owner/server(?)
+
+	// TODO: Make interactable only by owner/server (?)
 }

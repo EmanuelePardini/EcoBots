@@ -169,16 +169,18 @@ bool UInventoryComponent::DropItem(bool RemoveHalf)
 
 TMap<TSubclassOf<UInventoryItem>, float> UInventoryComponent::SaveInventory()
 {
+	//Declare the map needed for saving data
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo;
 	
 	for(int i = 0; i < InventoryArray.Num(); i++)
 	{
 		if(InventoryArray[i])
 		{
+			//Add item to the map
 			InventoryInfo.Add(InventoryArray[i]->GetItemType(), InventoryArray[i]->Quantity);
 		}
 	}
-
+	//Return the map
 	return InventoryInfo;
 }
 
