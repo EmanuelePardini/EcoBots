@@ -48,7 +48,7 @@ void UEcoBotStatsComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Manage timers for decrementing stats
-	ManageStatTimers(DeltaTime);
+	ManageStatsTimer(DeltaTime);
 }
 
 
@@ -72,35 +72,22 @@ void UEcoBotStatsComponent::IncrementStat(FStat& Stat, float Amount)
 }
 
 // Manage timers for decrementing stats over time
-void UEcoBotStatsComponent::ManageStatTimers(float DeltaTime)
+void UEcoBotStatsComponent::ManageStatsTimer(float DeltaTime)
 {
-	// Manage hunger decrement timer
-	HungerStat.DecrementTimer += DeltaTime;
-	if (HungerStat.DecrementTimer >= HungerStat.DecrementDelay)
-	{
-		IncrementStat(HungerStat, HungerStat.DecrementAmount);
-		HungerStat.DecrementTimer = 0;
-	}
-	
-	// Manage thirst decrement timer
-	ThirstStat.DecrementTimer += DeltaTime;
-	if (ThirstStat.DecrementTimer >= ThirstStat.DecrementDelay)
-	{
-		IncrementStat(ThirstStat, ThirstStat.DecrementAmount);
-		ThirstStat.DecrementTimer = 0;
-	}
+	ManageSingleStatTimer(HungerStat, DeltaTime);
+	ManageSingleStatTimer(ThirstStat, DeltaTime);
 	
 	// Manage health decrement timer if hunger or thirst is zero
-	if (HungerStat.CurrentValue <= 0 || ThirstStat.CurrentValue <= 0)
-	{
-		HealthStat.DecrementTimer += DeltaTime;
+	if (HungerStat.CurrentValue <= 0 || ThirstStat.CurrentValue <= 0) ManageSingleStatTimer(HealthStat, DeltaTime);
+}
 
-		if (HealthStat.DecrementTimer >= HealthStat.DecrementDelay)
-		{
-			if (HungerStat.CurrentValue <= 0) IncrementStat(HealthStat, HealthStat.DecrementAmount);
-			if (ThirstStat.CurrentValue <= 0) IncrementStat(HealthStat, HealthStat.DecrementAmount);
-			HealthStat.DecrementTimer = 0;
-		}
+void UEcoBotStatsComponent::ManageSingleStatTimer(FStat& Stat, float DeltaTime)
+{
+	Stat.DecrementTimer += DeltaTime;
+	if (Stat.DecrementTimer >= Stat.DecrementDelay)
+	{
+		IncrementStat(Stat, Stat.DecrementAmount);
+		Stat.DecrementTimer = 0;
 	}
 }
 

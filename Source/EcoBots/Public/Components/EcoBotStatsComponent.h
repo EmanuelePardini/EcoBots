@@ -38,7 +38,10 @@ public:
 	UFUNCTION()
 	void IncrementStat(FStat& Stat, float Amount);
 	UFUNCTION()
-	void ManageStatTimers(float DeltaTime);
+	void ManageStatsTimer(float DeltaTime);
+	UFUNCTION()
+	void ManageSingleStatTimer(FStat& Stat,float DeltaTime);
+	
 	UFUNCTION()
 	void UpdateStat(FStat& Stat, float Value);
 	UFUNCTION()

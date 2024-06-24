@@ -158,8 +158,8 @@ void AEcoBotCharacter::LoadStatsData(UEcoBotDataSubsystem* EcoBotData)
 	{
 		//Load the last stat value and align all parameters
 		if (Stats[0] > 0) StatsComponent->UpdateStat(StatsComponent->HealthStat, Stats[0]);
-		if (Stats[1] > 0) StatsComponent->UpdateStat(StatsComponent->HungerStat, Stats[1]);
-		if (Stats[2] > 0) StatsComponent->UpdateStat(StatsComponent->ThirstStat, Stats[2]);
+		StatsComponent->UpdateStat(StatsComponent->HungerStat, Stats[1]);
+		StatsComponent->UpdateStat(StatsComponent->ThirstStat, Stats[2]);
 
 		OnStatsChange(StatsComponent->HealthStat.PercentValue, StatsComponent->HungerStat.PercentValue, StatsComponent->ThirstStat.PercentValue);
 	}
