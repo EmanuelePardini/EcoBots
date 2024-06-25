@@ -32,7 +32,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Interface")
 	UEcoBotsSaveGame* GetGameData();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Interface")
-	void SaveLevelData(FLevelData LevelData, FCharacterData CharacterData);
+	void SaveLevelData(FLevelData LevelData, FCharacterData CharacterData, FWorldManagerData WorldManagerData);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Interface")
 	void SaveCharacterData(FLevelData CharacterData);
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.

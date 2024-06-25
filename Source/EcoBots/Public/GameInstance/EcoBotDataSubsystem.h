@@ -3,9 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/InventoryComponent.h"
 #include "Items/InventoryItem.h"
-#include "Items/InventorySlot.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "EcoBotDataSubsystem.generated.h"
 

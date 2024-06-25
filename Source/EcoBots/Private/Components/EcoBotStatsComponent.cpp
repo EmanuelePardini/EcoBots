@@ -113,6 +113,5 @@ void UEcoBotStatsComponent::UpdateStat(FStat& Stat, float Value)
 // Handle character death
 void UEcoBotStatsComponent::Die()
 {
-	AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
-	if (EcoBotCharacter) EcoBotCharacter->Die();
+	OnHealthFinished.Broadcast();
 }

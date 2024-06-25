@@ -6,6 +6,7 @@
 #include "Interfaces/SaveGameInterface.h"
 #include "Managers/VillageSavingsManager.h"
 #include "Kismet/GameplayStatics.h"
+#include "Managers/WorldCatastrophesManager.h"
 
 // Sets default values
 ACheckPoint::ACheckPoint()
@@ -65,9 +66,16 @@ void ACheckPoint::SaveData(AActor* OtherActor)
 	AVillageSavingsManager* VillageSavings = Cast<AVillageSavingsManager>(VillageSavingsActor);
 	if(!VillageSavings) return;
 
+	//For World Manager Data
+	AActor* WorldManagerActor = UGameplayStatics::GetActorOfClass(GetWorld(), AVillageSavingsManager::StaticClass());
+	if(!WorldManagerActor) return;
+	
+	AWorldCatastrophesManager* WorldManager = Cast<AWorldCatastrophesManager>(WorldManagerActor);
+	if(!WorldManager) return;
+
 	// Send to SaveSlot
 	if(GetGameInstance()->Implements<USaveGameInterface>())
 	{
-		ISaveGameInterface::Execute_SaveLevelData(GetGameInstance(), VillageSavings->GetLevelData(), Player->GetCharacterData());
+		ISaveGameInterface::Execute_SaveLevelData(GetGameInstance(), VillageSavings->GetLevelData(), Player->GetCharacterData(), WorldManager->GetWorldManagerData());
 	}
 }

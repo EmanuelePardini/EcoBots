@@ -27,7 +27,7 @@ public:
 	void LoadCharacterData(FCharacterData CharacterData);
 	virtual void NewGameData_Implementation() override;
 	virtual UEcoBotsSaveGame* GetGameData_Implementation() override;
-	virtual void SaveLevelData_Implementation(FLevelData LevelData, FCharacterData CharacterData) override;
+	virtual void SaveLevelData_Implementation(FLevelData LevelData, FCharacterData CharacterData, FWorldManagerData WorldManagerData) override;
 	virtual void Init() override;
 
 	UFUNCTION(BlueprintCallable)

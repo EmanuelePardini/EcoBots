@@ -13,9 +13,6 @@ void UEcoBotGameInstance::LoadGameData_Implementation()
 	{
 		// Cast the loaded save game to the UEcoBotsSaveGame class
 		SaveGameRef = Cast<UEcoBotsSaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-		
-		// Retrieve level and character data from the save
-		FLevelData LevelData = SaveGameRef->GetLevelData();
 		FCharacterData CharacterData = SaveGameRef->GetCharacterData();
 		
 		// Load the character data into the game
@@ -56,13 +53,14 @@ UEcoBotsSaveGame* UEcoBotGameInstance::GetGameData_Implementation()
 }
 
 // Saves the level and character data to the save game reference
-void UEcoBotGameInstance::SaveLevelData_Implementation(FLevelData LevelData, FCharacterData CharacterData)
+void UEcoBotGameInstance::SaveLevelData_Implementation(FLevelData LevelData, FCharacterData CharacterData, FWorldManagerData WorldManagerData)
 {
 	if(!SaveGameRef) return;
 	
 	// Update the save game reference with the new data
 	SaveGameRef->CharacterData = CharacterData;
 	SaveGameRef->LevelData = LevelData;
+	SaveGameRef->WorldManagerData = WorldManagerData;
 	
 	// Save the game data
 	Execute_SaveGameData(this);

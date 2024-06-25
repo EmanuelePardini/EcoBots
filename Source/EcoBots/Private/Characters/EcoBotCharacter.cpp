@@ -3,6 +3,8 @@
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameInstance/EcoBotDataSubsystem.h"
+#include "Kismet/GameplayStatics.h"
+#include "Managers/WorldCatastrophesManager.h"
 #include "SaveGame/CharacterData.h"
 
 // Sets default values
@@ -24,6 +26,7 @@ AEcoBotCharacter::AEcoBotCharacter()
 	// Components
 	StatsComponent = CreateDefaultSubobject<UEcoBotStatsComponent>("StatsComponent");
 	StatsComponent->OnValueChanged.AddDynamic(this, &AEcoBotCharacter::OnStatsChange);
+	StatsComponent->OnHealthFinished.AddDynamic(this, &AEcoBotCharacter::Die);
 	InteractionComponent = CreateDefaultSubobject<UInteractionComponent>("InteractionComponent");
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("InventoryComponent");
 }
@@ -185,6 +188,5 @@ FCharacterData AEcoBotCharacter::GetCharacterData()
 	CharacterData.ThirstValue = StatsComponent->ThirstStat.CurrentValue;
 	CharacterData.InventoryInfo = InventoryComponent->SaveInventory();
 	return CharacterData;
-
-	// TODO: Make interactable only by owner/server (?)
+	
 }

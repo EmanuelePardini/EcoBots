@@ -27,6 +27,8 @@ public:
 
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnValueChanged,float, HealthPercent, float, HungerPercent, float, ThirstPercent);
 	FOnValueChanged OnValueChanged;
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnHealthFinished);
+	FOnHealthFinished OnHealthFinished;
 
 protected:
 	// Called when the game starts

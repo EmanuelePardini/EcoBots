@@ -12,6 +12,8 @@ struct FActorData
 	
 	UPROPERTY(BlueprintReadWrite, Category = "ActorSaveData")
 	FTransform ActorTransform;
+
+	
 };
 
 USTRUCT(BlueprintType, Blueprintable)

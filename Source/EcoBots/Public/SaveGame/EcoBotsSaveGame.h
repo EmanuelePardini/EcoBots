@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "LevelData.h"
 #include "CharacterData.h"
+#include "WorldManagerData.h"
 #include "GameFramework/SaveGame.h"
 #include "EcoBotsSaveGame.generated.h"
 
@@ -20,9 +21,13 @@ public:
 	FLevelData LevelData;
 	UPROPERTY(EditAnywhere)
 	FCharacterData CharacterData;
+	UPROPERTY(EditAnywhere)
+	FWorldManagerData WorldManagerData;
 	
 	UFUNCTION()
 	FORCEINLINE FLevelData GetLevelData(){return LevelData;}
 	UFUNCTION()
 	FORCEINLINE FCharacterData GetCharacterData(){return CharacterData;}
+	UFUNCTION()
+	FORCEINLINE FWorldManagerData GetWorldManagerData(){return WorldManagerData;}
 };
