@@ -3,7 +3,6 @@
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameInstance/EcoBotDataSubsystem.h"
-#include "Kismet/GameplayStatics.h"
 #include "Managers/WorldCatastrophesManager.h"
 #include "SaveGame/CharacterData.h"
 
@@ -29,6 +28,7 @@ AEcoBotCharacter::AEcoBotCharacter()
 	StatsComponent->OnHealthFinished.AddDynamic(this, &AEcoBotCharacter::Die);
 	InteractionComponent = CreateDefaultSubobject<UInteractionComponent>("InteractionComponent");
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("InventoryComponent");
+	InventoryComponent->OnInventoryChanged.AddDynamic(this, &AEcoBotCharacter::OnInventoryChanged);
 }
 
 // Called when the game starts or when spawned
@@ -173,6 +173,7 @@ void AEcoBotCharacter::LoadInventoryData(UEcoBotDataSubsystem* EcoBotData)
 	// Load and set the inventory from the saved data
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
 	if(!EcoBotData->GetEcoBotInventory().IsEmpty()) InventoryComponent->LoadInventory(InventoryInfo);
+	OnInventoryChanged(InventoryComponent->GetInventoryArray());
 }
 
 FCharacterData AEcoBotCharacter::GetCharacterData()

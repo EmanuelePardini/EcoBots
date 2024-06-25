@@ -18,6 +18,9 @@ class ECOBOTS_API UInventoryComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UInventoryComponent();
+	
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInventoryChanged, const TArray<UInventorySlot*>&, Slots);
+	FOnInventoryChanged OnInventoryChanged;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -26,6 +29,7 @@ protected:
 	TArray<UInventorySlot*> InventoryArray;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	int InventoryLength = 20;
+
 	
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -43,6 +47,8 @@ public:
 	bool MoveAll(UInventoryComponent* NewInventory);
 	UFUNCTION(BlueprintCallable)
 	bool DropItem(bool RemoveHalf = false);
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE TArray<UInventorySlot*> GetInventoryArray(){return InventoryArray;}
 	UFUNCTION(BlueprintCallable)
 	TMap<TSubclassOf<UInventoryItem>, float> SaveInventory();
 	UFUNCTION(BlueprintCallable)

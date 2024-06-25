@@ -56,6 +56,8 @@ bool UInventoryComponent::AddItem(AItem* Item)
 
 	//Destroy InScene Item
 	Item->Destroy();
+
+	OnInventoryChanged.Broadcast(InventoryArray);
 	return true;
 }
 
@@ -78,6 +80,8 @@ bool UInventoryComponent::UseItem(TSubclassOf<UInventoryItem> ItemData, int Quan
 		InventoryMap.Remove(ItemData);
 		InventoryArray.Remove(Slot);
 		}
+
+	OnInventoryChanged.Broadcast(InventoryArray);
 	return true;
 }
 
@@ -100,6 +104,8 @@ bool UInventoryComponent::MoveItem(UInventorySlot* Slot)
 		InventoryMap.Add(Slot->GetItemType(), NewSlot);
 		InventoryArray.Add(NewSlot);
 	}
+
+	OnInventoryChanged.Broadcast(InventoryArray);
 	return true;
 }
 
@@ -115,7 +121,8 @@ bool UInventoryComponent::MoveAll(UInventoryComponent* NewInventory)
 	
 	InventoryMap.Empty();
 	InventoryArray.Empty();
-	
+
+	OnInventoryChanged.Broadcast(InventoryArray);
 	return true;
 }
 
@@ -146,7 +153,7 @@ bool UInventoryComponent::DropItem(bool RemoveHalf)
 		InventoryArray.Remove(LastSlot);
 	}
 	else //else if is half spawn the half quantity of the Item and keep the other half
-		{
+	{
 		float ReductionFactor = 0.5f;
 
 		if (LastSlot->Quantity % 2 == 1)
@@ -163,7 +170,9 @@ bool UInventoryComponent::DropItem(bool RemoveHalf)
 			SpawnedItem->Quantity = FMath::FloorToInt(LastSlot->Quantity * ReductionFactor);
 			LastSlot->Quantity *= ReductionFactor;
 		}
-		}
+	}
+
+	OnInventoryChanged.Broadcast(InventoryArray);
 	return true;
 }
 

@@ -25,7 +25,12 @@ protected:
 	TSubclassOf<AInteractable> ItemToSpawn;
 
 public:
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE FString GetItemName() const {return ItemName;}
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE FString GetItemType() const {return ItemType;}
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE UTexture2D* GetItemIcon() const {return ItemIcon;}
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE TSubclassOf<AInteractable> GetItemToSpawn() const {return ItemToSpawn;}
 };

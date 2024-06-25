@@ -20,10 +20,12 @@ protected:
 	TSubclassOf<UInventoryItem> Type;
 
 public:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Quantity;
 	
 	void Init(int InitialQuantity, TSubclassOf<UInventoryItem> SlotType);
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UInventoryItem* GetInventoryItem() const {return InventoryItem;}
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE TSubclassOf<UInventoryItem> GetItemType() const {return Type;}
 };

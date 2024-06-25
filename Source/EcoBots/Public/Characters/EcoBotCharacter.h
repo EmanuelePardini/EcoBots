@@ -92,6 +92,8 @@ public:
 	//UI
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnStatsChange(float HealthPercent, float HungerPercent, float ThirstPercent);
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnInventoryChanged(const TArray<UInventorySlot*>& Slots);
 
 	//Data Savings
 	UFUNCTION(BlueprintCallable)
