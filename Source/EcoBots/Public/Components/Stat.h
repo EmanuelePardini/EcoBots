@@ -2,7 +2,7 @@
 #include "CoreMinimal.h"
 #include "Stat.generated.h"
 
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintType, Blueprintable)
 struct FStat
 {
 	GENERATED_BODY()
@@ -27,10 +27,10 @@ struct FStat
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Decrement")
 	float DecrementAmount;
+	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Decrement")
 	bool bToUse;
-	
 	
 
 	FStat()

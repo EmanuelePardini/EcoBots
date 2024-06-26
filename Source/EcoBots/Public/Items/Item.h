@@ -18,6 +18,10 @@ class ECOBOTS_API AItem : public AInteractable
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	uint8 Quantity = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
+	float DespawnDelay = 60.f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float DespawnTimer = 0.f;
 	
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Setup")
@@ -28,4 +32,5 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void Interact(AEcoBotCharacter* InteractingChar) override;
 	void Rotate(float DeltaTime);
+	void ManageDespawn(float DeltaTime);
 };

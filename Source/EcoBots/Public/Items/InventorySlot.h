@@ -22,10 +22,18 @@ protected:
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	int Quantity;
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSlotUse, UInventoryItem*, InventoryItem, int, Qt);
+	FOnSlotUse OnSlotUse;
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnSlotDrop, UInventorySlot*, InventorySlot, int, Qt);
+	FOnSlotDrop OnSlotDrop;
 	
 	void Init(int InitialQuantity, TSubclassOf<UInventoryItem> SlotType);
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UInventoryItem* GetInventoryItem() const {return InventoryItem;}
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE TSubclassOf<UInventoryItem> GetItemType() const {return Type;}
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE void UseSlot(UInventoryItem* ToUseItem, int ToUseQt){OnSlotUse.Broadcast(ToUseItem, ToUseQt);}
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE void DropSlot(int ToUseQt){OnSlotDrop.Broadcast(this, ToUseQt);}
 };

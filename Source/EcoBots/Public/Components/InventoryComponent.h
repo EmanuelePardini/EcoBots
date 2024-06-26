@@ -37,18 +37,22 @@ protected:
 public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	UFUNCTION()
+	void StartEventListening(UInventorySlot* Slot);
 	UFUNCTION(BlueprintCallable)
 	bool AddItem(AItem* Item);
 	UFUNCTION(BlueprintCallable)
-	bool UseItem(TSubclassOf<UInventoryItem> ItemData, int Quantity=1);
+	void UseItem(UInventoryItem* ItemData, int Quantity=1);
 	UFUNCTION(BlueprintCallable)
 	bool MoveItem(UInventorySlot* Slot);
 	UFUNCTION(BlueprintCallable)
 	bool MoveAll(UInventoryComponent* NewInventory);
 	UFUNCTION(BlueprintCallable)
-	bool DropItem(bool RemoveHalf = false);
+	void DropItem(UInventorySlot* Slot, int DropQuantity);
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE TArray<UInventorySlot*> GetInventoryArray(){return InventoryArray;}
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE UInventoryComponent* GetInventory(){return this;}
 	UFUNCTION(BlueprintCallable)
 	TMap<TSubclassOf<UInventoryItem>, float> SaveInventory();
 	UFUNCTION(BlueprintCallable)

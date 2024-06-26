@@ -9,6 +9,7 @@ void AItem::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	Rotate(DeltaSeconds);
+	ManageDespawn(DeltaSeconds);
 }
 
 void AItem::Interact(AEcoBotCharacter* InteractingChar)
@@ -25,4 +26,10 @@ void AItem::Rotate(float DeltaTime)
 	FRotator NewRotation = GetActorRotation();
 	NewRotation.Yaw += 90 * DeltaTime;
 	SetActorRotation(NewRotation);
+}
+
+void AItem::ManageDespawn(float DeltaTime)
+{
+	DespawnTimer += DeltaTime;
+	if(DespawnTimer >= DespawnDelay) Destroy();
 }

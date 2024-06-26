@@ -2,6 +2,8 @@
 
 
 #include "Components/InventoryComponent.h"
+
+#include "Characters/EcoBotCharacter.h"
 #include "Items/Item.h"
 
 // Sets default values for this component's properties
@@ -20,7 +22,7 @@ void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+
 	
 }
 
@@ -31,6 +33,12 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+void UInventoryComponent::StartEventListening(UInventorySlot* Slot)
+{
+	Slot->OnSlotUse.AddDynamic(this, &UInventoryComponent::UseItem);
+	Slot->OnSlotDrop.AddDynamic(this, &UInventoryComponent::DropItem);
 }
 
 bool UInventoryComponent::AddItem(AItem* Item)
@@ -50,39 +58,52 @@ bool UInventoryComponent::AddItem(AItem* Item)
 		//add a slot and Insert Item in a new slot
 		UInventorySlot* NewSlot = NewObject<UInventorySlot>();
 		NewSlot->Init(Item->Quantity, Item->GetItemData());
+		StartEventListening(NewSlot);
 		InventoryMap.Add(Item->GetItemData(), NewSlot);
 		InventoryArray.Add(NewSlot);
 	}
 
 	//Destroy InScene Item
 	Item->Destroy();
-
 	OnInventoryChanged.Broadcast(InventoryArray);
 	return true;
 }
 
-bool UInventoryComponent::UseItem(TSubclassOf<UInventoryItem> ItemData, int Quantity)
+void UInventoryComponent::UseItem(UInventoryItem* Item, int Quantity)
 {
+	//If the Item is not usable in Inventory then don't use
+	if(!Item->GetIsUsable()) return;
+	
+	//If is not a character then can't use the Item
+	AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
+	if(!EcoBotCharacter) return;
+	
 	//If the inventory has the item required
+	TSubclassOf<UInventoryItem> ItemData = Item->GetClass();
 	bool Contained = InventoryMap.Contains(ItemData);
-	if (!Contained) return false;
+	if (!Contained) return;
 	
 	//If you have enough item of the type specified
 	bool IsEnough = InventoryMap[ItemData]->Quantity >= Quantity ? true : false;
-	if (!IsEnough) return false;
+	if (!IsEnough) return;
+
+	//Use the Item
+	for(int i = 0; i < Quantity; i++)
+	{
+		Item->UseInventoryItem(EcoBotCharacter);
+	}
 	
 	//then subtract it to your inventory
 	InventoryMap[ItemData]->Quantity -= Quantity;
 		
 	if(InventoryMap[ItemData]->Quantity <= 0) //if the remaining quantity is 0 remove the slot
-		{
+	{
 		UInventorySlot* Slot = InventoryMap.FindRef(ItemData);
 		InventoryMap.Remove(ItemData);
 		InventoryArray.Remove(Slot);
-		}
+	}
 
 	OnInventoryChanged.Broadcast(InventoryArray);
-	return true;
 }
 
 bool UInventoryComponent::MoveItem(UInventorySlot* Slot)
@@ -103,6 +124,7 @@ bool UInventoryComponent::MoveItem(UInventorySlot* Slot)
 		NewSlot->Init(Slot->Quantity, Slot->GetItemType());
 		InventoryMap.Add(Slot->GetItemType(), NewSlot);
 		InventoryArray.Add(NewSlot);
+		StartEventListening(NewSlot);
 	}
 
 	OnInventoryChanged.Broadcast(InventoryArray);
@@ -126,55 +148,45 @@ bool UInventoryComponent::MoveAll(UInventoryComponent* NewInventory)
 	return true;
 }
 
-bool UInventoryComponent::DropItem(bool RemoveHalf)
+
+void UInventoryComponent::DropItem(UInventorySlot* Slot, int DropQuantity)
 {
-	//If Inventory is Empty do nothing
-	if(InventoryMap.IsEmpty()) return false;
+	// If Inventory is empty or the item is not in the inventory, do nothing
+	if (InventoryMap.IsEmpty() || !InventoryMap.Contains(Slot->GetInventoryItem()->GetClass())) return;
 
-	//Find the last item of the inventory
-	UInventorySlot* LastSlot = InventoryArray.Last();
-		
-	//Get the information to spawn the Item InScene
-	const FVector Position = FVector(GetOwner()->GetActorLocation().X+100,GetOwner()->GetActorLocation().Y,GetOwner()->GetActorLocation().Z);
+	// If the item slot is not found or DropQuantity is less than or equal to zero, do nothing
+	if (!Slot || Slot->Quantity <= 0 || DropQuantity <= 0) return;
+
+	// Get the information to spawn the item in scene
+	const FVector Position = FVector(GetOwner()->GetActorLocation().X + 100, GetOwner()->GetActorLocation().Y, GetOwner()->GetActorLocation().Z);
 	const FRotator Rotation = GetOwner()->GetActorRotation();
-	TSubclassOf<AInteractable> Interactable = LastSlot->GetInventoryItem()->GetItemToSpawn();
-	
-	
-	//Spawn the Actor and cast it to Item
+	TSubclassOf<AInteractable> Interactable = Slot->GetInventoryItem()->GetItemToSpawn();
+
+	// Spawn the actor and cast it to item
 	AItem* SpawnedItem = Cast<AItem>(GetWorld()->SpawnActor(Interactable, &Position, &Rotation));
-	
-	//Remove it from the collections if is Total or if the quantity is one or less
-	if(!RemoveHalf || LastSlot->Quantity <= 1)
+
+	// Calculate the actual quantity to drop
+	DropQuantity = FMath::Min(DropQuantity, Slot->Quantity);
+	SpawnedItem->Quantity = DropQuantity;
+
+	// Adjust the quantity in the inventory
+	if (DropQuantity >= Slot->Quantity)
 	{
-		//Reassign to the Item his previous Quantity
-		SpawnedItem->Quantity = LastSlot->Quantity;
-		
-		InventoryMap.Remove(SpawnedItem->GetItemData());
-		InventoryArray.Remove(LastSlot);
+		// If dropping all, remove the slot from inventory
+		InventoryMap.Remove(Slot->GetInventoryItem()->GetClass());
+		InventoryArray.Remove(Slot);
 	}
-	else //else if is half spawn the half quantity of the Item and keep the other half
+	else
 	{
-		float ReductionFactor = 0.5f;
-
-		if (LastSlot->Quantity % 2 == 1)
-		{
-			// If the quantity is odd, spawn the floor(Quantity / 2) items and keep the ceiling(Quantity / 2) items
-			int32 SpawnedQuantity = FMath::FloorToInt(LastSlot->Quantity * ReductionFactor);
-			SpawnedItem->Quantity = SpawnedQuantity;
-
-			LastSlot->Quantity -= SpawnedQuantity;
-		}
-		else
-		{
-			// If the quantity is even, spawn half and keep half
-			SpawnedItem->Quantity = FMath::FloorToInt(LastSlot->Quantity * ReductionFactor);
-			LastSlot->Quantity *= ReductionFactor;
-		}
+		// Otherwise, just reduce the quantity
+		Slot->Quantity -= DropQuantity;
 	}
 
+	// Notify about the inventory change
 	OnInventoryChanged.Broadcast(InventoryArray);
-	return true;
 }
+
+
 
 TMap<TSubclassOf<UInventoryItem>, float> UInventoryComponent::SaveInventory()
 {
@@ -207,6 +219,7 @@ void UInventoryComponent::LoadInventory(TMap<TSubclassOf<UInventoryItem>, float>
 		// Add the new slot to the inventory map and array
 		InventoryMap.Add(ItemData.Key, NewSlot);
 		InventoryArray.Add(NewSlot);
+		StartEventListening(NewSlot);
 	}
+	OnInventoryChanged.Broadcast(InventoryArray);
 }
-

@@ -3,3 +3,8 @@
 
 #include "Items/InventoryItem.h"
 
+void UInventoryItem::UseInventoryItem(AEcoBotCharacter* EcoBotCharacter)
+{
+	OnUseInventoryItem(EcoBotCharacter);
+	
+}

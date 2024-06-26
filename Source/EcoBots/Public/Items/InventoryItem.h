@@ -22,15 +22,23 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Setup")
 	FString ItemType;
 	UPROPERTY(EditAnywhere, Category="Setup")
+	bool bIsInventoryUsable = false;
+	UPROPERTY(EditAnywhere, Category="Setup")
 	TSubclassOf<AInteractable> ItemToSpawn;
 
 public:
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE FString GetItemName() const {return ItemName;}
 	UFUNCTION(BlueprintCallable)
+	FORCEINLINE bool GetIsUsable() const {return bIsInventoryUsable;}
+	UFUNCTION(BlueprintCallable)
 	FORCEINLINE FString GetItemType() const {return ItemType;}
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UTexture2D* GetItemIcon() const {return ItemIcon;}
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE TSubclassOf<AInteractable> GetItemToSpawn() const {return ItemToSpawn;}
+	UFUNCTION(BlueprintCallable)
+	void UseInventoryItem(AEcoBotCharacter* EcoBotCharacter);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnUseInventoryItem(AEcoBotCharacter* EcoBotCharacter);
 };

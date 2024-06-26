@@ -37,15 +37,14 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	UFUNCTION()
-	void IncrementStat(FStat& Stat, float Amount);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
+	void IncrementStat(UPARAM(ref)FStat& Stat, float Amount);
+	UFUNCTION(BlueprintCallable)
 	void ManageStatsTimer(float DeltaTime);
-	UFUNCTION()
-	void ManageSingleStatTimer(FStat& Stat,float DeltaTime);
-	
-	UFUNCTION()
-	void UpdateStat(FStat& Stat, float Value);
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
+	void ManageSingleStatTimer(UPARAM(ref)FStat& Stat,float DeltaTime);
+	UFUNCTION(BlueprintCallable)
+	void UpdateStat(UPARAM(ref)FStat& Stat, float Value);
+	UFUNCTION(BlueprintCallable)
 	void Die();
 };

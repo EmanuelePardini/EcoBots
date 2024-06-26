@@ -87,8 +87,12 @@ void UEcoBotStatsComponent::ManageStatsTimer(float DeltaTime)
 	// Manage health decrement timer if hunger or thirst is zero or is not to use
 	if ((HungerStat.CurrentValue <= 0 || !HungerStat.bToUse) || (ThirstStat.CurrentValue <= 0 || !ThirstStat.bToUse))
 		ManageSingleStatTimer(HealthStat, DeltaTime);
-}
 
+	// Manage health increment timer if hunger or thirst is zero or is not to use
+	if ((HungerStat.CurrentValue <= 0 || !HungerStat.bToUse) || (ThirstStat.CurrentValue <= 0 || !ThirstStat.bToUse))
+		ManageSingleStatTimer(HealthStat, DeltaTime);
+}
+	//TODO: Increment Health
 void UEcoBotStatsComponent::ManageSingleStatTimer(FStat& Stat, float DeltaTime)
 {
 	if(!Stat.bToUse) return;
