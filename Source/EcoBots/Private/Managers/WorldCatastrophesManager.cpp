@@ -78,6 +78,7 @@ FWorldManagerData AWorldCatastrophesManager::GetWorldManagerData()
 	FWorldManagerData WorldManagerData;
 	
 	WorldManagerData.HealthValue = WorldStatsComponent->HealthStat.CurrentValue;
+	WorldManagerData.CatastropheTimer = CatastropheTimer;
 
 	return WorldManagerData;
 }
@@ -102,6 +103,7 @@ void AWorldCatastrophesManager::SetWorldManagerData()
 			OnStatsChange(WorldStatsComponent->HealthStat.PercentValue);
 			//Called again in blueprint if the Widget is not valid at the first try, check on BP_WorldCatastrophesManager
 		}
+		if(WorldManagerData.CatastropheTimer) CatastropheTimer = WorldManagerData.CatastropheTimer;
 	}
 }
 

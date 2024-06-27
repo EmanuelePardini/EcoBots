@@ -10,5 +10,7 @@ struct FWorldManagerData
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float HealthValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float CatastropheTimer;
 	
 };
