@@ -20,10 +20,14 @@ USTRUCT(BlueprintType, Blueprintable)
 struct FCraftRecipe
 {
 	GENERATED_BODY()
-    
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Crafting")
+	UTexture2D* CraftableIcon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
 	TArray<FCraftMaterialCost> RequiredMaterials;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
 	bool Unlocked = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
+	int UnlockCost;
 };
 //TODO: Update Recipe

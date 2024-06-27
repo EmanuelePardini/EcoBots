@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
 #include "CraftRecipe.h"
-#include "UObject/NoExportTypes.h"
 #include "CraftBookCraftable.generated.h"
 
 /**
  * 
  */
-UCLASS(Blueprintable, BlueprintType)
-class ECOBOTS_API UCraftBookCraftable : public UObject
+UCLASS()
+class ECOBOTS_API UCraftBookCraftable : public UDataAsset
 {
 	GENERATED_BODY()
 

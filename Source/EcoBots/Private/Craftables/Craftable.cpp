@@ -17,4 +17,3 @@ void ACraftable::EndInteract(AEcoBotCharacter* InteractingChar)
 {
 	OnEndInteract();
 }
-//TODO: Update Craftable

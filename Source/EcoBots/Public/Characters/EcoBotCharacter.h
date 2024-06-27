@@ -6,6 +6,7 @@
 #include "EcoBotAnim.h"
 #include "InputActionValue.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CraftBookComponent.h"
 #include "Components/EcoBotStatsComponent.h"
 #include "Components/InteractionComponent.h"
 #include "Components/InventoryComponent.h"
@@ -50,6 +51,8 @@ protected:
 	UInteractionComponent* InteractionComponent;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Components")
 	UInventoryComponent* InventoryComponent;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Components")
+	UCraftBookComponent* CraftBookComponent;
 	
 	//Animations
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animations")

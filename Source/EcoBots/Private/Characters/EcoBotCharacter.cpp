@@ -26,9 +26,13 @@ AEcoBotCharacter::AEcoBotCharacter()
 	StatsComponent = CreateDefaultSubobject<UEcoBotStatsComponent>("StatsComponent");
 	StatsComponent->OnValueChanged.AddDynamic(this, &AEcoBotCharacter::OnStatsChange);
 	StatsComponent->OnHealthFinished.AddDynamic(this, &AEcoBotCharacter::Die);
+	
 	InteractionComponent = CreateDefaultSubobject<UInteractionComponent>("InteractionComponent");
+	
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("InventoryComponent");
 	InventoryComponent->OnInventoryChanged.AddDynamic(this, &AEcoBotCharacter::OnInventoryChanged);
+
+	CraftBookComponent = CreateDefaultSubobject<UCraftBookComponent>("CraftBookComponent");
 }
 
 // Called when the game starts or when spawned

@@ -7,16 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8050884-a120-4d1f-a8fd-fe7dab1979cf" name="Changes" comment="">
+    <list default="true" id="d64bbc1d-395e-4a06-b98f-025c337ff0c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Animations/A_Bot_Flying.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Animations/A_Bot_Flying.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Audio/MetaSounds/MS_JetPack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Audio/MetaSounds/MS_JetPack.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/InventoryItems/BP_CoconutInventoryItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/InventoryItems/BP_CoconutInventoryItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_WoodPlateRecipe.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/EcoBotStatsComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/EcoBotStatsComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftBookComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftBookComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftBookComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftBookComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftBookCraftable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftBookCraftable.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +34,10 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2iQ65o2ISv0ucaZim3tnNwZKJ81" />
+  <component name="ProjectId" id="2iTg3bcnjJCjgPQFuyvS73YeNnZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -178,14 +183,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f8050884-a120-4d1f-a8fd-fe7dab1979cf" name="Changes" comment="" />
-      <created>1719410273587</created>
+      <changelist id="d64bbc1d-395e-4a06-b98f-025c337ff0c7" name="Changes" comment="" />
+      <created>1719519784658</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1719410273587</updated>
-      <workItem from="1719410276972" duration="7102000" />
-      <workItem from="1719491092795" duration="4890000" />
-      <workItem from="1719500286100" duration="3053000" />
+      <updated>1719519784658</updated>
+      <workItem from="1719519786941" duration="1514000" />
+      <workItem from="1719521323550" duration="1302000" />
     </task>
     <servers />
   </component>
