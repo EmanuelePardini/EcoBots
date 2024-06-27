@@ -9,8 +9,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f8050884-a120-4d1f-a8fd-fe7dab1979cf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Managers/WorldCatastrophesManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Managers/WorldCatastrophesManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/SaveGame/WorldManagerData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/SaveGame/WorldManagerData.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Animations/A_Bot_Flying.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Animations/A_Bot_Flying.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Audio/MetaSounds/MS_JetPack.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Audio/MetaSounds/MS_JetPack.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree_2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/InventoryItems/BP_CoconutInventoryItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/InventoryItems/BP_CoconutInventoryItem.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/EcoBotStatsComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/EcoBotStatsComponent.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,34 +29,34 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2iQ65o2ISv0ucaZim3tnNwZKJ81" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\emanu\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\emanu\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\emanu\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\emanu\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\emanu\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\emanu\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="EcoBots" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -178,6 +184,8 @@
       <option name="presentableId" value="Default" />
       <updated>1719410273587</updated>
       <workItem from="1719410276972" duration="7102000" />
+      <workItem from="1719491092795" duration="4890000" />
+      <workItem from="1719500286100" duration="3053000" />
     </task>
     <servers />
   </component>

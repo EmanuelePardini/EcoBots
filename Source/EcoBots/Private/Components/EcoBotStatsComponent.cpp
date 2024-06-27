@@ -92,7 +92,7 @@ void UEcoBotStatsComponent::ManageStatsTimer(float DeltaTime)
 	if ((HungerStat.CurrentValue <= 0 || !HungerStat.bToUse) || (ThirstStat.CurrentValue <= 0 || !ThirstStat.bToUse))
 		ManageSingleStatTimer(HealthStat, DeltaTime);
 }
-	//TODO: Increment Health
+
 void UEcoBotStatsComponent::ManageSingleStatTimer(FStat& Stat, float DeltaTime)
 {
 	if(!Stat.bToUse) return;
