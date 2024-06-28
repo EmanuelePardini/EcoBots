@@ -91,6 +91,8 @@ public:
 	FORCEINLINE UCameraComponent* GetCamera(){return ThirdPersonCamera;}
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UEcoBotAnim* GetEcoBotAnim(){return EcoBotAnim;}
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE UInventoryComponent* GetInventory(){return InventoryComponent;}
 
 	//UI
 	UFUNCTION(BlueprintImplementableEvent)

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InventoryComponent.h"
 #include "Components/ActorComponent.h"
 #include "Craftables/CraftBookCraftable.h"
 #include "CraftBookComponent.generated.h"
@@ -18,15 +19,20 @@ public:
 	UCraftBookComponent();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
 	TArray<UCraftBookCraftable*> CraftRecipes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UInventoryComponent* InventoryReference;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	void Init();
+	void InitInventoryReference();
+	
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	//TODO: Update CraftComponent
-		
+	UFUNCTION(BlueprintCallable)
+	bool Craft(UCraftBookCraftable* Craftable);
+	UFUNCTION(BlueprintCallable)
+	void SpawnCraftable(TSubclassOf<AItem> ItemToSpawn);
 };

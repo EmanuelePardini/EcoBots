@@ -14,10 +14,12 @@ UCLASS()
 class ECOBOTS_API UCraftBookCraftable : public UDataAsset
 {
 	GENERATED_BODY()
-
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Craftable")
 	FCraftRecipe CraftRecipe;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Craftable")
+	TSubclassOf<AItem> ItemToSpawn;
+
+	UFUNCTION(BlueprintCallable)
+	void UnlockRecipe(int Quantity);
 };
-//TODO:Update CraftBookCraftable

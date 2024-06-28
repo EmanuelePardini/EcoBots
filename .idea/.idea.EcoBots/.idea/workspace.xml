@@ -9,18 +9,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d64bbc1d-395e-4a06-b98f-025c337ff0c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_WoodPlateRecipe.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftBookComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftBookComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftBookCraftable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftBookCraftable.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftBookComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftBookComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftBookCraftable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftBookCraftable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/Craftable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/Craftable.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +184,7 @@
       <option name="presentableId" value="Default" />
       <updated>1719519784658</updated>
       <workItem from="1719519786941" duration="1514000" />
-      <workItem from="1719521323550" duration="1302000" />
+      <workItem from="1719521323550" duration="6467000" />
     </task>
     <servers />
   </component>

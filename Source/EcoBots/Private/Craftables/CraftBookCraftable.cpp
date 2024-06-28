@@ -3,3 +3,11 @@
 
 #include "Craftables/CraftBookCraftable.h"
 
+void UCraftBookCraftable::UnlockRecipe(int Quantity)
+{
+	if(Quantity >= CraftRecipe.UnlockCost)
+	{
+		CraftRecipe.Unlocked = true;
+	}
+	
+}

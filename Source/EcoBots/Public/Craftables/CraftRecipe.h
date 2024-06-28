@@ -30,4 +30,3 @@ struct FCraftRecipe
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
 	int UnlockCost;
 };
-//TODO: Update Recipe
