@@ -1,32 +1,22 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
 #pragma once
+
 #include "CoreMinimal.h"
-#include "Items/InventoryItem.h"
+#include "RecipeStruct.h"
+#include "Engine/DataAsset.h"
 #include "CraftRecipe.generated.h"
-class ACraftable;
 
-USTRUCT(BlueprintType, Blueprintable)
-struct FCraftMaterialCost
+/**
+ * 
+ */
+UCLASS()
+class ECOBOTS_API UCraftRecipe : public UDataAsset
 {
 	GENERATED_BODY()
-    
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material Cost")
-	TSubclassOf<UInventoryItem> RequiredMaterial;
-    
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Material Cost")
-	int Quantity; 
-};
-
-USTRUCT(BlueprintType, Blueprintable)
-struct FCraftRecipe
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Crafting")
-	UTexture2D* CraftableIcon;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
-	TArray<FCraftMaterialCost> RequiredMaterials;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
-	bool Unlocked = false;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
-	int UnlockCost;
+public: //TODO: 2 Define Recipe Data Asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Recipe")
+	FRecipeStruct RecipeStruct;
+	
+	
 };

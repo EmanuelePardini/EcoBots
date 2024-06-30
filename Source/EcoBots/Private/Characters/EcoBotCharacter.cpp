@@ -31,8 +31,6 @@ AEcoBotCharacter::AEcoBotCharacter()
 	
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("InventoryComponent");
 	InventoryComponent->OnInventoryChanged.AddDynamic(this, &AEcoBotCharacter::OnInventoryChanged);
-
-	CraftBookComponent = CreateDefaultSubobject<UCraftBookComponent>("CraftBookComponent");
 }
 
 // Called when the game starts or when spawned

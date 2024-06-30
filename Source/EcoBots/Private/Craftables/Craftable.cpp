@@ -5,15 +5,9 @@
 
 void ACraftable::Tick(float DeltaSeconds)
 {
-
+	
 }
 
 void ACraftable::Interact(AEcoBotCharacter* InteractingChar)
 {
-	OnBeginInteract();
-}
-
-void ACraftable::EndInteract(AEcoBotCharacter* InteractingChar)
-{
-	OnEndInteract();
 }
