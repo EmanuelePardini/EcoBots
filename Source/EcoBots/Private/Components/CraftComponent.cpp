@@ -38,6 +38,7 @@ void UCraftComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 void UCraftComponent::CraftPreview(int32 RecipeIndex)
 {
 	if(!InventoryReference) return;
+	if (!CraftRecipes.IsValidIndex(RecipeIndex)) return;
 	
 	FRecipeStruct RecipeStruct = CraftRecipes[RecipeIndex]->RecipeStruct;
 	
@@ -86,4 +87,35 @@ void UCraftComponent::CraftPreview(int32 RecipeIndex)
             }
         }
     }
+}
+
+TMap<TSubclassOf<UCraftRecipe>, bool> UCraftComponent::SaveCraftRecipes()
+{
+	TMap<TSubclassOf<UCraftRecipe>, bool> RecipesUnlockStatus;
+
+	if(!CraftRecipes.IsEmpty())
+	{
+		for (auto CraftRecipe : CraftRecipes)
+		{
+			RecipesUnlockStatus.Add(CraftRecipe->GetClass(), CraftRecipe->RecipeStruct.UnlockCraftable.Unlocked);
+		}	
+	}
+	
+	return  RecipesUnlockStatus;
+}
+
+void UCraftComponent::LoadCraftRecipes(TMap<TSubclassOf<UCraftRecipe>, bool> RecipesStatus)
+{
+	for (UCraftRecipe* Recipe : CraftRecipes)
+	{
+		if (Recipe)
+		{
+			TSubclassOf<UCraftRecipe> RecipeClass = Recipe->GetClass();
+			if (RecipesStatus.Contains(RecipeClass))
+			{
+				bool bIsUnlocked = RecipesStatus[RecipeClass];
+				Recipe->RecipeStruct.UnlockCraftable.Unlocked = bIsUnlocked;
+			}
+		}
+	}
 }

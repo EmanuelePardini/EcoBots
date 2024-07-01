@@ -31,5 +31,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	UFUNCTION(BlueprintCallable)
 	void CraftPreview(int32 RecipeIndex);
+	UFUNCTION(BlueprintCallable)
+	TMap<TSubclassOf<UCraftRecipe>, bool> SaveCraftRecipes();
+	UFUNCTION(BlueprintCallable)
+	void LoadCraftRecipes(TMap<TSubclassOf<UCraftRecipe>, bool> RecipesStatus);
 };

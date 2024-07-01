@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Craftables/CraftRecipe.h"
 #include "Items/InventoryItem.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "EcoBotDataSubsystem.generated.h"
@@ -27,6 +28,9 @@ protected:
 	float Thirst = -1; //-1 means Not Initialized
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TMap<TSubclassOf<UCraftRecipe>, bool> CraftInfo;
+	
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -45,5 +49,9 @@ public:
 	TMap<TSubclassOf<UInventoryItem>, float> GetEcoBotInventory();
 	UFUNCTION(BlueprintCallable)
 	void SetEcoBotInventory(TMap<TSubclassOf<UInventoryItem>, float>  NewInventoryInfo);
+	UFUNCTION(BlueprintCallable)
+	TMap<TSubclassOf<UCraftRecipe>, bool> GetEcoBotCraft();
+	UFUNCTION(BlueprintCallable)
+	void SetEcoBotCraft(TMap<TSubclassOf<UCraftRecipe>, bool>  NewCraftInfo);
 
 };

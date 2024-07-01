@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Items/InventoryItem.h"
+#include "Craftables/CraftRecipe.h"
 #include "CharacterData.generated.h"
 class AEcoBotCharacter;
 
@@ -24,5 +25,7 @@ public:
 	float ThirstValue;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<TSubclassOf<UCraftRecipe>, bool> CraftInfo;
 
 };

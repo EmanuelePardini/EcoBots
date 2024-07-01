@@ -179,13 +179,15 @@ void AEcoBotCharacter::LoadInventoryData(UEcoBotDataSubsystem* EcoBotData)
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
 	if(!EcoBotData->GetEcoBotInventory().IsEmpty()) InventoryComponent->LoadInventory(InventoryInfo);
 	OnInventoryChanged(InventoryComponent->GetInventoryArray());
+	//TODO: Setup Craft UI
+	//TODO: Craft BugFixing
 }
 
 void AEcoBotCharacter::LoadCraftData(UEcoBotDataSubsystem* EcoBotData)
 {
-	//TODO: Implement Craft UI
-	//TODO: Implement Craft Data Savings
-	//TODO: Fix Bugs
+	// Load and set the inventory from the saved data
+	TMap<TSubclassOf<UCraftRecipe>, bool> CraftInfo = EcoBotData->GetEcoBotCraft();
+	if(!EcoBotData->GetEcoBotCraft().IsEmpty()) CraftComponent->LoadCraftRecipes(CraftInfo);
 }
 
 FCharacterData AEcoBotCharacter::GetCharacterData()
@@ -200,6 +202,8 @@ FCharacterData AEcoBotCharacter::GetCharacterData()
 	CharacterData.HungerValue = StatsComponent->HungerStat.CurrentValue;
 	CharacterData.ThirstValue = StatsComponent->ThirstStat.CurrentValue;
 	CharacterData.InventoryInfo = InventoryComponent->SaveInventory();
+	CharacterData.CraftInfo = CraftComponent->SaveCraftRecipes();
+	
 	return CharacterData;
 	
 }

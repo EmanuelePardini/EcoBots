@@ -57,3 +57,13 @@ void UEcoBotDataSubsystem::SetEcoBotInventory(TMap<TSubclassOf<UInventoryItem>, 
 {
 	InventoryInfo = NewInventoryInfo;
 }
+
+TMap<TSubclassOf<UCraftRecipe>, bool> UEcoBotDataSubsystem::GetEcoBotCraft()
+{
+	return CraftInfo;
+}
+
+void UEcoBotDataSubsystem::SetEcoBotCraft(TMap<TSubclassOf<UCraftRecipe>, bool> NewCraftInfo)
+{
+	CraftInfo = NewCraftInfo;
+}
