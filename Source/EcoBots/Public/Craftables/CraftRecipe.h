@@ -14,7 +14,7 @@ UCLASS()
 class ECOBOTS_API UCraftRecipe : public UDataAsset
 {
 	GENERATED_BODY()
-public: //TODO: 2 Define Recipe Data Asset
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Recipe")
 	FRecipeStruct RecipeStruct;
 	

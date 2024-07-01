@@ -8,20 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64bbc1d-395e-4a06-b98f-025c337ff0c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/RecipeStruct.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/DA_WoodPlateRecipe.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/NewBlueprint.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftBookComponent.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftBookCraftable.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/InventoryComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/InventoryComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftBookComponent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftBookCraftable.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/Craftable.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/InventoryComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/InventoryComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftablePreview.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftablePreview.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/RecipeStruct.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/RecipeStruct.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +193,8 @@
       <workItem from="1719519786941" duration="1514000" />
       <workItem from="1719521323550" duration="7270000" />
       <workItem from="1719577804098" duration="4611000" />
-      <workItem from="1719770091120" duration="2693000" />
+      <workItem from="1719770091120" duration="4406000" />
+      <workItem from="1719822914668" duration="9332000" />
     </task>
     <servers />
   </component>

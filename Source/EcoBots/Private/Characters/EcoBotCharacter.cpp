@@ -31,6 +31,8 @@ AEcoBotCharacter::AEcoBotCharacter()
 	
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>("InventoryComponent");
 	InventoryComponent->OnInventoryChanged.AddDynamic(this, &AEcoBotCharacter::OnInventoryChanged);
+
+	CraftComponent = CreateDefaultSubobject<UCraftComponent>("CraftComponent");
 }
 
 // Called when the game starts or when spawned
@@ -136,6 +138,7 @@ void AEcoBotCharacter::LoadCharacterSaved()
 	LoadTransformData(EcoBotData);
 	LoadStatsData(EcoBotData);
 	LoadInventoryData(EcoBotData);
+	LoadCraftData(EcoBotData);
 }
 
 void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
@@ -176,6 +179,13 @@ void AEcoBotCharacter::LoadInventoryData(UEcoBotDataSubsystem* EcoBotData)
 	TMap<TSubclassOf<UInventoryItem>, float> InventoryInfo = EcoBotData->GetEcoBotInventory();
 	if(!EcoBotData->GetEcoBotInventory().IsEmpty()) InventoryComponent->LoadInventory(InventoryInfo);
 	OnInventoryChanged(InventoryComponent->GetInventoryArray());
+}
+
+void AEcoBotCharacter::LoadCraftData(UEcoBotDataSubsystem* EcoBotData)
+{
+	//TODO: Implement Craft UI
+	//TODO: Implement Craft Data Savings
+	//TODO: Fix Bugs
 }
 
 FCharacterData AEcoBotCharacter::GetCharacterData()

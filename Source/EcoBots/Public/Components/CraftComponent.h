@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InventoryComponent.h"
 #include "Components/ActorComponent.h"
 #include "Craftables/CraftRecipe.h"
 #include "CraftComponent.generated.h"
@@ -18,6 +19,10 @@ public:
 	UCraftComponent();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Recipes")
 	TArray<UCraftRecipe*> CraftRecipes;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UInventoryComponent* InventoryReference;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	ACraftablePreview* PossessedPreview = nullptr;
 
 protected:
 	// Called when the game starts
@@ -26,6 +31,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	//TODO: void SpawnPreview()
-	//TODO: void Craft()
+	void CraftPreview(int32 RecipeIndex);
 };

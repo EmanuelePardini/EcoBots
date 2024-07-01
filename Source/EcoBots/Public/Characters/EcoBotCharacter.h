@@ -6,6 +6,7 @@
 #include "EcoBotAnim.h"
 #include "InputActionValue.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CraftComponent.h"
 #include "Components/EcoBotStatsComponent.h"
 #include "Components/InteractionComponent.h"
 #include "Components/InventoryComponent.h"
@@ -50,6 +51,8 @@ protected:
 	UInteractionComponent* InteractionComponent;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Components")
 	UInventoryComponent* InventoryComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	UCraftComponent* CraftComponent;
 	
 	//Animations
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animations")
@@ -108,6 +111,8 @@ public:
 	void LoadStatsData(UEcoBotDataSubsystem* EcoBotData);
 	UFUNCTION(BlueprintCallable)
 	void LoadInventoryData(UEcoBotDataSubsystem* EcoBotData);
+	UFUNCTION(BlueprintCallable)
+	void LoadCraftData(UEcoBotDataSubsystem* EcoBotData);
 	UFUNCTION(BlueprintCallable)
 	FCharacterData GetCharacterData();
 };

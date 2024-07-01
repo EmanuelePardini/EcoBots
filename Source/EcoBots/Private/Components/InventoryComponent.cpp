@@ -71,8 +71,7 @@ bool UInventoryComponent::AddItem(AItem* Item)
 
 void UInventoryComponent::UseItem(UInventoryItem* Item, int Quantity)
 {
-	//If the Item is not usable in Inventory then don't use
-	if(!Item->GetIsUsable()) return;
+	//If the Item is not usable in Inventory it will not be used: Check BP_InventorySlotWidget
 	
 	//If is not a character then can't use the Item
 	AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
@@ -104,6 +103,14 @@ void UInventoryComponent::UseItem(UInventoryItem* Item, int Quantity)
 	}
 
 	OnInventoryChanged.Broadcast(InventoryArray);
+}
+
+void UInventoryComponent::UseItemByClass(TSubclassOf<UInventoryItem> ItemData, int Quantity)
+{
+	if (!ItemData) return;
+	
+	if (UInventorySlot* Slot = InventoryMap.FindRef(ItemData))
+		UseItem(Slot->GetInventoryItem(), Quantity);
 }
 
 bool UInventoryComponent::MoveItem(UInventorySlot* Slot)
@@ -187,6 +194,15 @@ void UInventoryComponent::DropItem(UInventorySlot* Slot, int DropQuantity)
 }
 
 
+int UInventoryComponent::GetItemCount(TSubclassOf<UInventoryItem> ItemToCount)
+{
+	if (UInventorySlot* Slot = InventoryMap.FindRef(ItemToCount))
+	{
+		return Slot->Quantity;
+	}
+	
+	return 0; //If not found
+}
 
 TMap<TSubclassOf<UInventoryItem>, float> UInventoryComponent::SaveInventory()
 {

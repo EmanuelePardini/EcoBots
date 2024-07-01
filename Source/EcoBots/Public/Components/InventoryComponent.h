@@ -42,7 +42,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool AddItem(AItem* Item);
 	UFUNCTION(BlueprintCallable)
-	void UseItem(UInventoryItem* ItemData, int Quantity=1);
+	void UseItem(UInventoryItem* ItemData, int Quantity = 1);
+	UFUNCTION(BlueprintCallable)
+	void UseItemByClass(TSubclassOf<UInventoryItem> ItemData, int Quantity = 1);
 	UFUNCTION(BlueprintCallable)
 	bool MoveItem(UInventorySlot* Slot);
 	UFUNCTION(BlueprintCallable)
@@ -53,6 +55,8 @@ public:
 	FORCEINLINE TArray<UInventorySlot*> GetInventoryArray(){return InventoryArray;}
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE UInventoryComponent* GetInventory(){return this;}
+	UFUNCTION(BlueprintCallable)
+	int GetItemCount(TSubclassOf<UInventoryItem> ItemToCount);
 	UFUNCTION(BlueprintCallable)
 	TMap<TSubclassOf<UInventoryItem>, float> SaveInventory();
 	UFUNCTION(BlueprintCallable)
