@@ -99,7 +99,9 @@ public:
 	void OnStatsChange(float HealthPercent, float HungerPercent, float ThirstPercent);
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnInventoryChanged(const TArray<UInventorySlot*>& Slots);
-
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnCraftChanged(const TArray<UCraftRecipe*>& CraftRecipes);
+	
 	//Data Savings
 	UFUNCTION(BlueprintCallable)
 	void LoadCharacterSaved();

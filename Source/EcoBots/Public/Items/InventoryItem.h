@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Interactables/Interactable.h"
+#include "UObject/Class.h"
 #include "InventoryItem.generated.h"
 
 /**
@@ -15,15 +16,15 @@ class ECOBOTS_API UInventoryItem : public UObject
 	GENERATED_BODY()
 
 protected:
-	UPROPERTY(EditAnywhere, Category="Setup")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	FString ItemName;
-	UPROPERTY(EditAnywhere, Category="Setup")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	UTexture2D* ItemIcon;
-	UPROPERTY(EditAnywhere, Category="Setup")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	FString ItemType;
-	UPROPERTY(EditAnywhere, Category="Setup")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	bool bIsInventoryUsable = false;
-	UPROPERTY(EditAnywhere, Category="Setup")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	TSubclassOf<AInteractable> ItemToSpawn;
 
 public:

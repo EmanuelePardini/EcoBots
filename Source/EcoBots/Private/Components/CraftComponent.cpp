@@ -23,7 +23,35 @@ void UCraftComponent::BeginPlay()
 
 	AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
 	if(EcoBotCharacter) InventoryReference = EcoBotCharacter->GetInventory();
-	
+	InitRecipes();
+}
+
+void UCraftComponent::InitRecipes()
+{
+	// Clear the CraftRecipes array to ensure no existing data is present
+	CraftRecipes.Empty();
+
+	// Loop through all classes in CraftRecipesClasses
+	for (TSubclassOf<UCraftRecipe> RecipeClass : CraftRecipesClasses)
+	{
+		// Check if the class is valid
+		if (RecipeClass)
+		{
+			// Create a new instance of the UCraftRecipe object
+			UCraftRecipe* NewRecipe = NewObject<UCraftRecipe>(this, RecipeClass);
+            
+			// Check if the new instance is valid
+			if (NewRecipe)
+			{
+				// Add the new instance to the CraftRecipes array
+				CraftRecipes.Add(NewRecipe);
+				NewRecipe->OnRecipeUse.AddDynamic(this, &UCraftComponent::CraftPreview);
+			}
+		}
+	}
+
+	//Clear the Array with classes
+	CraftRecipesClasses.Empty();
 }
 
 
@@ -35,12 +63,13 @@ void UCraftComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	// ...
 }
 
-void UCraftComponent::CraftPreview(int32 RecipeIndex)
+void UCraftComponent::CraftPreview(UCraftRecipe* CraftRecipeRef)
 {
-	if(!InventoryReference) return;
-	if (!CraftRecipes.IsValidIndex(RecipeIndex)) return;
+	if(!InventoryReference|| !CraftRecipeRef) return;
+
+	int32 RecipeIndex = CraftRecipes.Find(CraftRecipeRef);
 	
-	FRecipeStruct RecipeStruct = CraftRecipes[RecipeIndex]->RecipeStruct;
+	FRecipeStruct& RecipeStruct = CraftRecipes[RecipeIndex]->RecipeStruct;
 	
 	 // Check if the recipe is unlocked
     if (!RecipeStruct.UnlockCraftable.Unlocked)
@@ -49,45 +78,35 @@ void UCraftComponent::CraftPreview(int32 RecipeIndex)
         int UnlockMaterialCount = InventoryReference->GetItemCount(RecipeStruct.UnlockCraftable.UnlockMaterial);
         if (UnlockMaterialCount < RecipeStruct.UnlockCraftable.UnlockCost) return;
     	
+    	InventoryReference->UseItemByClass(RecipeStruct.UnlockCraftable.UnlockMaterial, RecipeStruct.UnlockCraftable.UnlockCost);
+    	
     	// Unlock the recipe
-        RecipeStruct.UnlockCraftable.Unlocked = true;  
-
+        RecipeStruct.UnlockCraftable.Unlocked = true;
+    	OnCraftChanged.Broadcast(CraftRecipes);
+    	return;
     }
-
-    // Check if we have all the materials needed to craft
-    bool bCanCraft = true;
-    for (const FCraftMaterialCost& MaterialCost : RecipeStruct.RequiredMaterials)
+	
+    // Spawn the preview
+    UWorld* World = GetWorld();
+    if (World && RecipeStruct.PreviewToSpawn)
     {
-        int MaterialCount = InventoryReference->GetItemCount(MaterialCost.RequiredMaterial);
-        if (MaterialCount < MaterialCost.Quantity)
+        FActorSpawnParameters SpawnParams;
+        SpawnParams.Owner = GetOwner();
+        AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
+        FVector SpawnLoc = EcoBotCharacter->GetActorLocation();
+        FRotator SpawnRot = EcoBotCharacter->GetActorRotation();
+    	
+        ACraftablePreview* NewPreview = World->SpawnActor<ACraftablePreview>(RecipeStruct.PreviewToSpawn, SpawnLoc, SpawnRot, SpawnParams);
+        if (NewPreview)
         {
-            bCanCraft = false;
-            break;
+            NewPreview->SetEcoBotReference(EcoBotCharacter);
+            NewPreview->SetCraftRecipe(RecipeStruct.RequiredMaterials);
         }
     }
-
-    if (bCanCraft)
-    {
-        // Spawn the preview
-        UWorld* World = GetWorld();
-        if (World && RecipeStruct.PreviewToSpawn)
-        {
-            FActorSpawnParameters SpawnParams;
-            SpawnParams.Owner = GetOwner();
-            AEcoBotCharacter* EcoBotCharacter = Cast<AEcoBotCharacter>(GetOwner());
-            FVector SpawnLoc = EcoBotCharacter->GetActorLocation();
-            FRotator SpawnRot = EcoBotCharacter->GetActorRotation();
-
-        	if(PossessedPreview) PossessedPreview->Destroy();
-            PossessedPreview = World->SpawnActor<ACraftablePreview>(RecipeStruct.PreviewToSpawn, SpawnLoc, SpawnRot, SpawnParams);
-            if (PossessedPreview)
-            {
-                PossessedPreview->SetEcoBotReference(EcoBotCharacter);
-                PossessedPreview->SetCraftRecipe(RecipeStruct.RequiredMaterials);
-            }
-        }
-    }
+	OnCraftChanged.Broadcast(CraftRecipes);
 }
+	
+
 
 TMap<TSubclassOf<UCraftRecipe>, bool> UCraftComponent::SaveCraftRecipes()
 {
@@ -113,7 +132,7 @@ void UCraftComponent::LoadCraftRecipes(TMap<TSubclassOf<UCraftRecipe>, bool> Rec
 			TSubclassOf<UCraftRecipe> RecipeClass = Recipe->GetClass();
 			if (RecipesStatus.Contains(RecipeClass))
 			{
-				bool bIsUnlocked = RecipesStatus[RecipeClass];
+				bool bIsUnlocked = RecipesStatus[RecipeClass] ? true : false;
 				Recipe->RecipeStruct.UnlockCraftable.Unlocked = bIsUnlocked;
 			}
 		}

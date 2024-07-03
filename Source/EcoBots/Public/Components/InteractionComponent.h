@@ -21,10 +21,6 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	float InteractionDistance = 1000.f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
-	FName InteractionMask = "OverlapAllDynamic"; //By Default, Actually overwritten with Custom "Interaction"
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
-	float Radius = 60;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	AInteractable* ActiveInteraction = nullptr;
 	

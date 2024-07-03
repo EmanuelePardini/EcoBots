@@ -3,3 +3,8 @@
 
 #include "Craftables/CraftRecipe.h"
 
+void UCraftRecipe::UseRecipe()
+{
+	OnRecipeUse.Broadcast(this);
+	OnUseRecipe();
+}

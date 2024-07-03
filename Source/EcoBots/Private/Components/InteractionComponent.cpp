@@ -56,8 +56,6 @@ void UInteractionComponent::Interact(AEcoBotCharacter* InteractingChar)
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.bReturnPhysicalMaterial = false;
 
-	//DrawDebugLine(Context, StartTrace, EndTrace, FColor::Green, false, 10.f);
-
 	if (GetWorld()->LineTraceMultiByChannel(HitResults, StartTrace, EndTrace, ECC_MAX, CollisionParams))
 	{
 		//For all interaction activate the interactables

@@ -35,6 +35,8 @@ struct FRecipeStruct
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Crafting")
+	FString CraftableName;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Crafting")
 	UTexture2D* CraftableIcon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crafting")
 	TSubclassOf<ACraftablePreview> PreviewToSpawn;

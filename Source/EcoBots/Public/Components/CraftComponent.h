@@ -14,25 +14,32 @@ class ECOBOTS_API UCraftComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCraftChanged, const TArray<UCraftRecipe*>&, Recipes);
+	FOnCraftChanged OnCraftChanged;
+
+protected:
 	// Sets default values for this component's properties
 	UCraftComponent();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Recipes")
+	UPROPERTY(EditAnywhere, Category = "Recipes")
+	TArray<TSubclassOf<UCraftRecipe>> CraftRecipesClasses;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<UCraftRecipe*> CraftRecipes;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UInventoryComponent* InventoryReference;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	ACraftablePreview* PossessedPreview = nullptr;
 
-protected:
+
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
+	void InitRecipes();
+	
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UFUNCTION(BlueprintCallable)
-	void CraftPreview(int32 RecipeIndex);
+	FORCEINLINE TArray<UCraftRecipe*> GetRecipes() {return CraftRecipes;}
+	UFUNCTION(BlueprintCallable)
+	void CraftPreview(UCraftRecipe* CraftRecipeRef);
 	UFUNCTION(BlueprintCallable)
 	TMap<TSubclassOf<UCraftRecipe>, bool> SaveCraftRecipes();
 	UFUNCTION(BlueprintCallable)
