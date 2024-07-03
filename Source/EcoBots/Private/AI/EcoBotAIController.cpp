@@ -1,12 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "AIControllers/BuddyAIController.h"
-
+#include "AI\EcoBotAIController.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
-void ABuddyAIController::OnPossess(APawn* InPawn)
+void AEcoBotAIController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
 

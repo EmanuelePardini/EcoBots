@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
-#include "BuddyAIController.generated.h"
+#include "EcoBotAIController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ECOBOTS_API ABuddyAIController : public AAIController
+class ECOBOTS_API AEcoBotAIController : public AAIController
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, Category ="Setup")

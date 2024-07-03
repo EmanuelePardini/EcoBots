@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Managers/VillageSavingsManager.h"
+
+#include "GameFramework/Character.h"
 #include "GameInstance/EcoBotGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/LevelData.h"
@@ -57,33 +59,39 @@ FLevelData AVillageSavingsManager::GetLevelData()
 // Loads saved level data
 void AVillageSavingsManager::LoadLevelSaved()
 {
-	UWorld* World = GetWorld();
-	
-	if (!World) return;
+// Get the world context
+    UWorld* World = GetWorld();
+    
+    // If the world is not valid, exit the function
+    if (!World) return;
 
-	UEcoBotGameInstance* GameInstance = Cast<UEcoBotGameInstance>(GetGameInstance());
-	if(GameInstance)
-	{
-		UEcoBotsSaveGame* SaveGameRef = GameInstance->GetGameRef();
-		
-		if(!SaveGameRef) return;
+    // Get the game instance and cast it to the specific game instance class
+    UEcoBotGameInstance* GameInstance = Cast<UEcoBotGameInstance>(GetGameInstance());
+    if(GameInstance)
+    {
+        // Get the save game reference from the game instance
+        UEcoBotsSaveGame* SaveGameRef = GameInstance->GetGameRef();
+        
+        // If the save game reference is not valid, exit the function
+        if(!SaveGameRef) return;
 
-		FLevelData LevelData = SaveGameRef->LevelData;
+        // Retrieve the level data from the save game reference
+        FLevelData LevelData = SaveGameRef->LevelData;
 
-		if(LevelData.Actors.IsEmpty()) return;
-		
-		// Spawn saved actors in the level
-		for (const FActorData& ActorData : LevelData.Actors)
-		{
-			UClass* ActorClass = ActorData.ActorClass;
-			
-			if (!ActorClass) continue;
-			
-			AActor* SpawnedActor = World->SpawnActor<AActor>(ActorClass);
-			
-			if (!SpawnedActor) continue;
-			
-			SpawnedActor->SetActorTransform(ActorData.ActorTransform); // Set the saved transform for the actor
-		}
-	}
+        // If there are no actors saved in the level data, exit the function
+        if(LevelData.Actors.IsEmpty()) return;
+        
+        // Iterate through each actor data in the saved level data
+        for (const FActorData& ActorData : LevelData.Actors)
+        {
+            // Get the class of the actor to be spawned
+            UClass* ActorClass = ActorData.ActorClass;
+            
+            // If the actor class is not valid, skip this actor
+            if (!ActorClass) continue;
+            
+            // Spawn the actor in the world using deferred spawning
+        	World->SpawnActor<AActor>(ActorClass, ActorData.ActorTransform);
+        }
+    }
 }

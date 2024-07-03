@@ -6,6 +6,15 @@
 #include "GameFramework/Actor.h"
 #include "VillageGeneratorManager.generated.h"
 
+USTRUCT(BlueprintType)
+struct FBiome
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	TArray<TSubclassOf<AActor>> LevelPieces;
+};
+
 UCLASS()
 class ECOBOTS_API AVillageGeneratorManager : public AActor
 {
@@ -19,7 +28,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<AActor*> GeneratedPieces;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
-	TArray<TSubclassOf<AActor>> LevelPieces;
+	TArray<FBiome> Biomes; 
 
 protected:
 	// Called when the game starts or when spawned
