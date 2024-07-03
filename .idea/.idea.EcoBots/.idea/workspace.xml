@@ -8,35 +8,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e14d2479-6137-479f-b63d-77035414a94c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/projectSettingsUpdater.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultGame.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultGame.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_WoodPlatePreview.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_WoodPlatePreview.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/DA_WoodPlateRecipe.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain3.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain4.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/BP_Terrain4.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Miscellaneous/BP_BatterySpawner.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventoryWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventoryWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Build/Windows/FileOpenOrder/CookerOpenOrder.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Build/Windows/FileOpenOrder/EditorOpenOrder.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_Water.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_Water.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Managers/BP_VillageSavingsManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Managers/BP_VillageSavingsManager.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftMaterialCostItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftMaterialCostItem.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftRecipeWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftRecipeWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventorySlotWidget.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_MainGameWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_MainGameWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/Menu/BP_OptionsMenuWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/Menu/BP_OptionsMenuWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGame.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGame.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGen.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGen.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Blueprints/Blueprint_CeilingLight.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/CraftComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/InteractionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/InteractionComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftRecipe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftRecipe.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/CraftComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/InteractionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/InteractionComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftRecipe.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftablePreview.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftablePreview.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/RecipeStruct.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/RecipeStruct.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Items/InventoryItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Items/InventoryItem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EcoBots.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/EcoBots.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/EcoBots.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/EcoBots.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +197,7 @@
       <option name="presentableId" value="Default" />
       <updated>1719967784409</updated>
       <workItem from="1719967787319" duration="3930000" />
-      <workItem from="1719993466279" duration="3365000" />
+      <workItem from="1719993466279" duration="8022000" />
     </task>
     <servers />
   </component>
