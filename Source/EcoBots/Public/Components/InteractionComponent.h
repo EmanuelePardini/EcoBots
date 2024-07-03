@@ -22,7 +22,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Setup")
 	float InteractionDistance = 1000.f;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	AInteractable* ActiveInteraction = nullptr;
+	AActor* ActiveInteraction = nullptr;
 	
 	// Called when the game starts
 	virtual void BeginPlay() override;

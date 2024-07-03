@@ -61,11 +61,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	void ManageRecharge(float DeltaTime);
-	
+
+	UFUNCTION(BlueprintCallable)
 	virtual void Interact(AEcoBotCharacter* InteractingChar  = nullptr) override;
+	UFUNCTION(BlueprintCallable)
 	virtual void EndInteract(AEcoBotCharacter* InteractingChar  = nullptr) override;
-
-
+	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void OnBeginInteract(AEcoBotCharacter* InteractingChar = nullptr);
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
