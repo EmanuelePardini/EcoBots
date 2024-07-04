@@ -60,7 +60,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void ManageRecharge(float DeltaTime);
+	virtual void ManageRecharge(float DeltaTime);
 
 	UFUNCTION(BlueprintCallable)
 	virtual void Interact(AEcoBotCharacter* InteractingChar  = nullptr) override;

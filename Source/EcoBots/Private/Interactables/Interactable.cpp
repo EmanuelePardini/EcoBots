@@ -50,6 +50,8 @@ void AInteractable::EndInteract(AEcoBotCharacter* InteractingChar)
 {
 	IInteractionInterface::EndInteract(InteractingChar);
 	OnEndInteract(InteractingChar);
+	// Set the object to not available after spawning items
+	IsAvailable = false;
 }
 
 // Spawns items at the specified location and rotation
@@ -91,6 +93,4 @@ void AInteractable::SpawnItem(FVector SpawnLoc, FRotator SpawnRot)
 			}
 		}
 	}
-	// Set the object to not available after spawning items
-	IsAvailable = false;
 }

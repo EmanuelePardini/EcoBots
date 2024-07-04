@@ -10,11 +10,12 @@
  * 
  */
 UCLASS()
-class ECOBOTS_API ACraftable : public AItem
+class ECOBOTS_API ACraftable : public AInteractable
 {
 	GENERATED_BODY()
 
 public:
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void Interact(AEcoBotCharacter* InteractingChar) override;
+	virtual void EndInteract(AEcoBotCharacter* InteractingChar) override;
 };

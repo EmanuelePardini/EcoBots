@@ -8,17 +8,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="790a74cc-447c-45cc-aa1c-40ceba8a293a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/EcoBots/Private/AI/BTT_Patrol.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/EcoBots/Public/AI/BTT_Patrol.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_AIControllerTest.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/LUSH_StylizedEnvironmentSet/_SharedAssets/Materials/M_Rock_Base.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/LUSH_StylizedEnvironmentSet/_SharedAssets/Materials/M_Rock_Base.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Orasot_Bundle/Stylized_Landscape_5_Bioms/Global/Materials/M_Master_Cliff_Mat.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Orasot_Bundle/Stylized_Landscape_5_Bioms/Global/Materials/M_Master_Cliff_Mat.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Materials/M_BotLightBlue.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Materials/M_BotLightBlue.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Materials/M_BotWhite.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/StackOBot/Characters/Bot/Materials/M_BotWhite.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/StackOBot/Environment/Props/SM_GenericMachine_Engine.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/StackOBot/Environment/Props/SM_GenericMachine_Engine.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_EcoBotBuddy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_EcoBotBuddy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/BP_CraftableWoodPlate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/BP_CraftableWoodPlate.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BT_Buddy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BT_Buddy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_WoodPlatePreview.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_WoodPlatePreview.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_CuttedTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_CuttedTree.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableRock_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableRock_2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_InteractableTree_2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_WoodItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_WoodItem.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/InventoryItems/BP_CoconutInventoryItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/InventoryItems/BP_CoconutInventoryItem.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/TropicalBiome/BP_TropicalTerrain1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/TropicalBiome/BP_TropicalTerrain1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/TropicalBiome/BP_TropicalTerrain2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/Terrains/TropicalBiome/BP_TropicalTerrain2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/TropicalBiome/BP_TropicalPiece1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/TropicalBiome/BP_TropicalPiece1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/TropicalBiome/BP_TropicalPiece2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/TropicalBiome/BP_TropicalPiece2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/TropicalBiome/BP_TropicalPiece3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/LevelPieces/TropicalBiome/BP_TropicalPiece3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Managers/BP_VillageSavingsManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Managers/BP_VillageSavingsManager.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_BuddyPhrasesWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_BuddyPhrasesWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftMaterialCostItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftMaterialCostItem.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftRecipeWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftRecipeWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftablePreviewWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftablePreviewWidget.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGen.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGen.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/AI/UBTT_Patrol.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Components/InteractionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Components/InteractionComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/AI/UBTT_Patrol.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Components/InteractionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Components/InteractionComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/Craftable.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Interactables/Interactable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Interactables/Interactable.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Managers/WorldCatastrophesManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Managers/WorldCatastrophesManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/Craftable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/Craftable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Interactables/Interactable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Interactables/Interactable.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +209,9 @@
       <option name="presentableId" value="Default" />
       <updated>1720023498721</updated>
       <workItem from="1720023499941" duration="187000" />
-      <workItem from="1720023821278" duration="10423000" />
+      <workItem from="1720023821278" duration="14421000" />
+      <workItem from="1720050374398" duration="38000" />
+      <workItem from="1720093571649" duration="8275000" />
     </task>
     <servers />
   </component>

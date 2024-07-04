@@ -16,7 +16,7 @@ AWorldCatastrophesManager::AWorldCatastrophesManager()
 	WorldStatsComponent->OnHealthFinished.AddDynamic(this, &AWorldCatastrophesManager::Die);
 	WorldStatsComponent->HungerStat.bToUse = false;
 	WorldStatsComponent->ThirstStat.bToUse = false;
-	WorldStatsComponent->HealthStat.DecrementAmount = -25.f;
+	WorldStatsComponent->HealthStat.DecrementAmount = -10.f;
 }
 
 // Called when the game starts or when spawned
