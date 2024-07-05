@@ -18,4 +18,5 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void Interact(AEcoBotCharacter* InteractingChar) override;
 	virtual void EndInteract(AEcoBotCharacter* InteractingChar) override;
+	virtual void ManageRecharge(float DeltaTime) override;
 };

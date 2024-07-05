@@ -6,6 +6,7 @@
 void ACraftable::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+	ManageRecharge(DeltaSeconds);
 }
 
 void ACraftable::Interact(AEcoBotCharacter* InteractingChar)
@@ -15,4 +16,11 @@ void ACraftable::Interact(AEcoBotCharacter* InteractingChar)
 void ACraftable::EndInteract(AEcoBotCharacter* InteractingChar)
 {
 	Super::EndInteract(InteractingChar);
+	IsAvailable = false;
+}
+
+void ACraftable::ManageRecharge(float DeltaTime)
+{
+	Super::ManageRecharge(DeltaTime);
+	
 }

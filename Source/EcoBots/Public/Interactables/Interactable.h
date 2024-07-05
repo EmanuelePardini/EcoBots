@@ -51,7 +51,12 @@ public:
 	float RechargeTimer = 0.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Timer")
 	bool IsAvailable = true;
-
+	UPROPERTY(EditAnywhere, Category="Sound")
+	USoundBase* InteractableSound;
+	UPROPERTY(EditAnywhere, Category="Sound")
+	float SoundVolume = 1.f;
+	UPROPERTY(EditAnywhere, Category = "Sound")
+	USoundAttenuation* SoundAttenuation;
 	
 protected:
 	// Called when the game starts or when spawned

@@ -27,6 +27,8 @@ protected:
 	TArray<UCraftRecipe*> CraftRecipes;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UInventoryComponent* InventoryReference;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	ACraftablePreview* InUsePreview = nullptr;
 
 
 	// Called when the game starts

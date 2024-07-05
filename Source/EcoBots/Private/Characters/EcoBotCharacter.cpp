@@ -114,8 +114,9 @@ void AEcoBotCharacter::Interact()
 	// Set interaction state and trigger the interaction animation
 	if(EcoBotAnim) EcoBotAnim->HasInteracted = true;
 	IsInteracting = true;
-
-	InteractionComponent->Interact(this);
+	
+	InteractionComponent->Interact(this); 
+	OnBeginInteract(); //VFX will seem like Men In Black ;)
 }
 
 void AEcoBotCharacter::EndInteract()
@@ -124,6 +125,7 @@ void AEcoBotCharacter::EndInteract()
 	if(EcoBotAnim) EcoBotAnim->HasInteracted = false;
 	IsInteracting = false;
 	InteractionComponent->EndInteract(this);
+	OnEndInteract();
 }
 
 void AEcoBotCharacter::LoadCharacterSaved()

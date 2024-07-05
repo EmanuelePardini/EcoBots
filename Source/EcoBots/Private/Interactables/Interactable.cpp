@@ -2,6 +2,8 @@
 
 #include "Interactables/Interactable.h"
 
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values
 AInteractable::AInteractable()
 {
@@ -42,13 +44,16 @@ void AInteractable::ManageRecharge(float DeltaTime)
 void AInteractable::Interact(AEcoBotCharacter* InteractingChar)
 {
 	IInteractionInterface::Interact(InteractingChar);
+	if(!IsAvailable) return;
 	OnBeginInteract(InteractingChar);
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), InteractableSound, GetActorLocation(), GetActorRotation(), SoundVolume, 1.f, 0, SoundAttenuation);
 }
 
 // Handles end of interaction with the interactable object
 void AInteractable::EndInteract(AEcoBotCharacter* InteractingChar)
 {
 	IInteractionInterface::EndInteract(InteractingChar);
+	if(!IsAvailable) return;
 	OnEndInteract(InteractingChar);
 	// Set the object to not available after spawning items
 	IsAvailable = false;
@@ -57,7 +62,7 @@ void AInteractable::EndInteract(AEcoBotCharacter* InteractingChar)
 // Spawns items at the specified location and rotation
 void AInteractable::SpawnItem(FVector SpawnLoc, FRotator SpawnRot)
 {
-	if(IsAvailable && !InteractionDatas.IsEmpty())
+	if(!InteractionDatas.IsEmpty())
 	{
 		// If the spawn location and rotation are zero, use the actor's location and rotation
 		if(SpawnLoc.IsZero() && SpawnRot.IsZero())

@@ -8,9 +8,9 @@
 ACraftablePreview::ACraftablePreview()
 {
 	PreviewMesh = CreateDefaultSubobject<UStaticMeshComponent>("PreviewMesh");
-	PreviewMesh->SetupAttachment(RootComponent);
+	RootComponent = PreviewMesh;
 	ActionsWidget = CreateDefaultSubobject<UWidgetComponent>("ActionsWidget");
-	ActionsWidget->SetupAttachment(PreviewMesh);
+	ActionsWidget->SetupAttachment(RootComponent);
 }
 
 void ACraftablePreview::BeginPlay()
@@ -22,7 +22,7 @@ void ACraftablePreview::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	if (ActionsWidget) UpdateWidgetRotation();
-	if(EcoBotReference) ManagePreviewPlacing();
+	if(IsPlacing && EcoBotReference) ManagePreviewPlacing();
 }
 
 
@@ -43,13 +43,22 @@ void ACraftablePreview::UpdateWidgetRotation()
 
 void ACraftablePreview::ManagePreviewPlacing()
 {
-	if(IsPlacing)
+	FVector ForwardVector = EcoBotReference->GetActorForwardVector();
+	FVector StartLocation = EcoBotReference->GetActorLocation() + ForwardVector  * 250.f;
+	FVector EndLocation = StartLocation - FVector(0, 0, 1000.0f); // Trace down 1000 units
+
+	FHitResult HitResult;
+	FCollisionQueryParams CollisionParams;
+	CollisionParams.AddIgnoredActor(EcoBotReference);
+	CollisionParams.AddIgnoredActor(this);
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, CollisionParams);
+
+	if (bHit)
 	{
-		FVector PlayerLocation = EcoBotReference->GetActorLocation();
-		FVector ForwardVector = EcoBotReference->GetActorForwardVector();
-		FVector NewLocation = PlayerLocation + (ForwardVector * 200.0f);
-		SetActorLocation(NewLocation);
-		
+		FVector PreviewLocation = FVector(StartLocation.X, StartLocation.Y, HitResult.Location.Z); // Impact Point with ground
+
+		SetActorLocation(PreviewLocation); 
 		SetActorRotation(EcoBotReference->GetActorRotation());
 	}
 }

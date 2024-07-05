@@ -82,6 +82,10 @@ public:
 	//Interaction Manage
 	void Interact();
 	void EndInteract();
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnBeginInteract();
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void OnEndInteract();
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void Die();

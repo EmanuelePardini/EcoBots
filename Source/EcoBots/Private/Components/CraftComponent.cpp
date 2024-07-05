@@ -97,10 +97,15 @@ void UCraftComponent::CraftPreview(UCraftRecipe* CraftRecipeRef)
         FRotator SpawnRot = EcoBotCharacter->GetActorRotation();
     	
         ACraftablePreview* NewPreview = World->SpawnActor<ACraftablePreview>(RecipeStruct.PreviewToSpawn, SpawnLoc, SpawnRot, SpawnParams);
-        if (NewPreview)
+    	
+    	if(InUsePreview) InUsePreview->IsPlacing = false;
+    	InUsePreview = NewPreview;
+
+    	
+        if (InUsePreview)
         {
-            NewPreview->SetEcoBotReference(EcoBotCharacter);
-            NewPreview->SetCraftRecipe(RecipeStruct.RequiredMaterials);
+            InUsePreview->SetEcoBotReference(EcoBotCharacter);
+            InUsePreview->SetCraftRecipe(RecipeStruct.RequiredMaterials);
         }
     }
 	OnCraftChanged.Broadcast(CraftRecipes);

@@ -17,16 +17,18 @@ class ECOBOTS_API ACraftablePreview : public ACraftable
 	GENERATED_BODY()
 public:
 	ACraftablePreview();
-	
-protected:
-	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="UI")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UStaticMeshComponent* PreviewMesh;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="UI")
 	UWidgetComponent* ActionsWidget;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	AEcoBotCharacter* EcoBotReference;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool IsPlacing = true;
+	
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	AEcoBotCharacter* EcoBotReference;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCraftMaterialCost> NeededMaterials;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Craftable")
