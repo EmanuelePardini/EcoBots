@@ -44,7 +44,7 @@ void ACraftablePreview::UpdateWidgetRotation()
 void ACraftablePreview::ManagePreviewPlacing()
 {
 	FVector ForwardVector = EcoBotReference->GetActorForwardVector();
-	FVector StartLocation = EcoBotReference->GetActorLocation() + ForwardVector  * 250.f;
+	FVector StartLocation = EcoBotReference->GetActorLocation() + ForwardVector * 250.f;
 	FVector EndLocation = StartLocation - FVector(0, 0, 1000.0f); // Trace down 1000 units
 
 	FHitResult HitResult;
@@ -58,7 +58,15 @@ void ACraftablePreview::ManagePreviewPlacing()
 	{
 		FVector PreviewLocation = FVector(StartLocation.X, StartLocation.Y, HitResult.Location.Z); // Impact Point with ground
 
-		SetActorLocation(PreviewLocation); 
+		// Calculate Actor Bounding Box to start from bottom
+		FVector Origin;
+		FVector BoxExtent;
+		GetActorBounds(false, Origin, BoxExtent);
+
+		// Apply OffSet to Location
+		PreviewLocation.Z += BoxExtent.Z;
+
+		SetActorLocation(PreviewLocation);
 		SetActorRotation(EcoBotReference->GetActorRotation());
 	}
 }

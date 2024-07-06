@@ -55,6 +55,7 @@ public:
 	USoundBase* InteractableSound;
 	UPROPERTY(EditAnywhere, Category="Sound")
 	float SoundVolume = 1.f;
+	float VolumeMultiplier = 3.f;
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	USoundAttenuation* SoundAttenuation;
 	

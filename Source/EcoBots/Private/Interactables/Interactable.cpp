@@ -46,7 +46,6 @@ void AInteractable::Interact(AEcoBotCharacter* InteractingChar)
 	IInteractionInterface::Interact(InteractingChar);
 	if(!IsAvailable) return;
 	OnBeginInteract(InteractingChar);
-	UGameplayStatics::PlaySoundAtLocation(GetWorld(), InteractableSound, GetActorLocation(), GetActorRotation(), SoundVolume, 1.f, 0, SoundAttenuation);
 }
 
 // Handles end of interaction with the interactable object
@@ -55,6 +54,7 @@ void AInteractable::EndInteract(AEcoBotCharacter* InteractingChar)
 	IInteractionInterface::EndInteract(InteractingChar);
 	if(!IsAvailable) return;
 	OnEndInteract(InteractingChar);
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), InteractableSound, GetActorLocation(), GetActorRotation(), SoundVolume * VolumeMultiplier, 1.f, 0, SoundAttenuation);
 	// Set the object to not available after spawning items
 	IsAvailable = false;
 }
