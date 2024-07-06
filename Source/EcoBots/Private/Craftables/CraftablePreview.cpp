@@ -3,14 +3,17 @@
 
 #include "Craftables/CraftablePreview.h"
 #include "Characters/EcoBotCharacter.h"
+#include "Components/WidgetInteractionComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 ACraftablePreview::ACraftablePreview()
 {
 	PreviewMesh = CreateDefaultSubobject<UStaticMeshComponent>("PreviewMesh");
 	RootComponent = PreviewMesh;
-	ActionsWidget = CreateDefaultSubobject<UWidgetComponent>("ActionsWidget");
-	ActionsWidget->SetupAttachment(RootComponent);
+	DiscardWidget = CreateDefaultSubobject<UWidgetComponent>("DiscardWidget");
+	DiscardWidget->SetupAttachment(RootComponent);
+	CraftWidget = CreateDefaultSubobject<UWidgetComponent>("CraftWidget");
+	CraftWidget->SetupAttachment(RootComponent);
 }
 
 void ACraftablePreview::BeginPlay()
@@ -21,12 +24,13 @@ void ACraftablePreview::BeginPlay()
 void ACraftablePreview::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (ActionsWidget) UpdateWidgetRotation();
+	if (DiscardWidget) UpdateWidgetRotation(DiscardWidget);
+	if (CraftWidget) UpdateWidgetRotation(CraftWidget);
 	if(IsPlacing && EcoBotReference) ManagePreviewPlacing();
 }
 
 
-void ACraftablePreview::UpdateWidgetRotation()
+void ACraftablePreview::UpdateWidgetRotation(UWidgetComponent* ActionsWidget)
 {
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (PlayerController)

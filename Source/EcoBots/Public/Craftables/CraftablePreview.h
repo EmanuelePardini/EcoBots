@@ -20,7 +20,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UStaticMeshComponent* PreviewMesh;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="UI")
-	UWidgetComponent* ActionsWidget;
+	UWidgetComponent* DiscardWidget;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="UI")
+	UWidgetComponent* CraftWidget;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool IsPlacing = true;
 	
@@ -39,7 +41,7 @@ protected:
 	
 public:
 	virtual void Tick(float DeltaSeconds) override;
-	void UpdateWidgetRotation();
+	void UpdateWidgetRotation(UWidgetComponent* ActionsWidget);
 	void ManagePreviewPlacing();
 	void SetCraftRecipe(TArray<FCraftMaterialCost> MaterialCosts);
 	void SetEcoBotReference(AEcoBotCharacter* NewEcoBot);
