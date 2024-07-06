@@ -24,7 +24,8 @@ void ADayNightManager::UpdateSunRotation()
 	int32 Minute = CurrentDateTime.GetMinute();
 	int32 Second = CurrentDateTime.GetSecond();
 
-	(Hour > 20 || (Hour >= 0 && Hour <= 6)) ? bIsNight = true : bIsNight = false;
+	(Hour > 18 || (Hour >= 0 && Hour <= 6)) ? bIsNight = true : bIsNight = false;
+	if(bIsNight) DirectionalSunLight->SetVisibility(false);
 
 	// Calculate the rotation based on the time of day
 	// 0 degrees is midnight, 90 degrees is 6 AM, 180 degrees is noon, 270 degrees is 6 PM

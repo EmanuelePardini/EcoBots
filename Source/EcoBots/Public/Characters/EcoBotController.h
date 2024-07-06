@@ -37,14 +37,7 @@ public:
 
 	//Primary Actions
 	void Move(const FInputActionValue& Value);
-
-	//Jump Manage
-	void Jump(const FInputActionValue& Value);
-
-	//Run Manage
-	void Run(const FInputActionValue& Value);
-	void EndRun(const FInputActionValue& Value);
-
+	
 	//Interaction Manage
 	void Interact(const FInputActionValue& Value);
 	void EndInteract();

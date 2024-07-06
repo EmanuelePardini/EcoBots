@@ -86,29 +86,6 @@ void AEcoBotCharacter::Move(const FInputActionValue& Value)
 	AddMovementInput(RightDirection, MovementValue.X);
 }
 
-void AEcoBotCharacter::DoJump()
-{
-	// Prevent jumping if the character is interacting
-	if(IsInteracting) return;
-	Jump();
-}
-
-void AEcoBotCharacter::Run()
-{
-	// Prevent running if the character is interacting
-	if(IsInteracting) return;
-	
-	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
-}
-
-void AEcoBotCharacter::EndRun()
-{
-	// Prevent ending run if the character is interacting
-	if(IsInteracting) return;
-	
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
-}
-
 void AEcoBotCharacter::Interact()
 {
 	// Set interaction state and trigger the interaction animation
