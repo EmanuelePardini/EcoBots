@@ -28,7 +28,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	AEcoBotCharacter* EcoBotReference;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+	bool ToApplyZOffset  = false; //To use in case scale or blueprint location is not original
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FCraftMaterialCost> NeededMaterials;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Craftable")

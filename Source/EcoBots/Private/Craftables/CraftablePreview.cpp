@@ -59,13 +59,16 @@ void ACraftablePreview::ManagePreviewPlacing()
 		FVector PreviewLocation = FVector(StartLocation.X, StartLocation.Y, HitResult.Location.Z); // Impact Point with ground
 
 		// Calculate Actor Bounding Box to start from bottom
-		FVector Origin;
-		FVector BoxExtent;
-		GetActorBounds(false, Origin, BoxExtent);
+		if(ToApplyZOffset) //To use in case scale or blueprint location is not original
+			{
+			FVector Origin;
+			FVector BoxExtent;
+			GetActorBounds(false, Origin, BoxExtent);
 
-		// Apply OffSet to Location
-		PreviewLocation.Z += BoxExtent.Z;
-
+			// Apply OffSet to Location
+			PreviewLocation.Z += BoxExtent.Z;
+			}
+		
 		SetActorLocation(PreviewLocation);
 		SetActorRotation(EcoBotReference->GetActorRotation());
 	}

@@ -7,7 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c09b5d7-41d0-4efd-a73a-3c668308f419" name="Changes" comment="" />
+    <list default="true" id="0c09b5d7-41d0-4efd-a73a-3c668308f419" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftablePreview.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Craftables/CraftablePreview.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -174,7 +178,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720185611026</updated>
-      <workItem from="1720185614082" duration="11757000" />
+      <workItem from="1720185614082" duration="12881000" />
     </task>
     <servers />
   </component>
