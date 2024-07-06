@@ -7,61 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c09b5d7-41d0-4efd-a73a-3c668308f419" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Audio/SA_MasterAttenuation.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Audio/SA_MasterAttenuation.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_EcoBotBuddy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_EcoBotBuddy.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/BP_CraftableAirPurifier.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/BP_CraftableAirPurifier.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/BP_CraftableCampFire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/BP_CraftableCampFire.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewAirPurifier.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewAirPurifier.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewCampFire.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewCampFire.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewRockWall.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewRockWall.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewWoodWall.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftPreviews/BP_PreviewWoodWall.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_AirPurifierRecipe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_AirPurifierRecipe.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_RockWallRecipe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_RockWallRecipe.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_WoodWallRecipe.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Craftables/CraftRecipes/BP_WoodWallRecipe.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Gamemodes/BP_EcoBotGamemode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Gamemodes/BP_EcoBotGamemode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_Water.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_Water.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertCuttedTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertCuttedTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableBush.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableBush.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableBush_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableBush_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableRock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableRock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableRock_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableRock_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableTree_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Desert/BP_DesertInteractableTree_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowCuttedTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowCuttedTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableBush.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableBush.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableBush_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableBush_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableRock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableRock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableRock_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableRock_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableTree_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Snow/BP_SnowInteractableTree_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalCuttedTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalCuttedTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableBush.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableBush.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableBush_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableBush_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableRock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableRock.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableRock_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableRock_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableTree.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableTree_2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/Tropical/BP_TropicalInteractableTree_2.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_BatteryItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_BatteryItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_BerryItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_BerryItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_CoconutItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_CoconutItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_IronItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_IronItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_RockItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_RockItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_RootRopeItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_RootRopeItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_WoodItem.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_WoodItem.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_CraftWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_EcoBotWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventoryWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_InventoryWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGen.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/InGame/EcoBotGen.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/GameOverMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/GameOverMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Audio/Fire01.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Audio/Fire01.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Craftables/CraftablePreview.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Interactables/Interactable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Interactables/Interactable.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Interactables/Interactable.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Interactables/Interactable.h" afterDir="false" />
-    </list>
+    <list default="true" id="0c09b5d7-41d0-4efd-a73a-3c668308f419" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -228,7 +174,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720185611026</updated>
-      <workItem from="1720185614082" duration="11166000" />
+      <workItem from="1720185614082" duration="11757000" />
     </task>
     <servers />
   </component>
