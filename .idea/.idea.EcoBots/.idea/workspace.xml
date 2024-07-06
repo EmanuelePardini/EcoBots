@@ -8,8 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c09b5d7-41d0-4efd-a73a-3c668308f419" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Build/Android_Multi/FileOpenOrder/CookerOpenOrder.log" beforeDir="false" afterPath="$PROJECT_DIR$/Build/Android_Multi/FileOpenOrder/CookerOpenOrder.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Build/Android_Multi/FileOpenOrder/EditorOpenOrder.log" beforeDir="false" afterPath="$PROJECT_DIR$/Build/Android_Multi/FileOpenOrder/EditorOpenOrder.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Realistic_Starter_VFX_Pack_Vol2/Particles/Fire/P_Flamethrower.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Realistic_Starter_VFX_Pack_Vol2/Particles/Fire/P_Flamethrower.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_EcoBotBuddy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/AI/BP_EcoBotBuddy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_EcoBotCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_Water.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_Water.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/Menu/MainMenu.umap" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +182,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720185611026</updated>
       <workItem from="1720185614082" duration="13731000" />
-      <workItem from="1720228427979" duration="5170000" />
+      <workItem from="1720228427979" duration="5662000" />
     </task>
     <servers />
   </component>
