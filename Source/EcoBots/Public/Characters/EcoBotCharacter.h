@@ -34,9 +34,7 @@ protected:
 	
 	//Movement
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Movement")
-	float WalkSpeed = 250.f;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Movement")
-	float RunSpeed = 500.f;
+	float WalkSpeed = 500.f;
 
 	//Input States
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="States")
@@ -77,11 +75,6 @@ public:
 	//Primary Actions
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
-	void DoJump();
-
-	//Run Manage
-	void Run();
-	void EndRun();
 
 	//Interaction Manage
 	void Interact();

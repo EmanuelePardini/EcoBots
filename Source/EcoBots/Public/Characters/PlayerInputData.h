@@ -19,13 +19,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Setup")
 	class UInputAction* Move;
 	UPROPERTY(EditDefaultsOnly, Category="Setup")
-	UInputAction* EnableLook;
-	UPROPERTY(EditDefaultsOnly, Category="Setup")
 	UInputAction* Look;
-	UPROPERTY(EditDefaultsOnly, Category="Setup")
-	UInputAction* Jump;
-	UPROPERTY(EditDefaultsOnly, Category="Setup")
-	UInputAction* Run;
 	UPROPERTY(EditDefaultsOnly, Category="Setup")
 	UInputAction* Interact;
 

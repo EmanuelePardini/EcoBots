@@ -29,7 +29,6 @@ protected:
 
 	
 private:
-	bool LookEnabled = false;
 	virtual void BeginPlay() override;
 
 public:
@@ -38,16 +37,7 @@ public:
 
 	//Primary Actions
 	void Move(const FInputActionValue& Value);
-	void EnableLook(const FInputActionValue& Value);
-	void DisableLook(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
-	
-	//Jump Manage
-	void Jump(const FInputActionValue& Value);
-
-	//Run Manage
-	void Run(const FInputActionValue& Value);
-	void EndRun(const FInputActionValue& Value);
 
 	//Interaction Manage
 	void Interact(const FInputActionValue& Value);
