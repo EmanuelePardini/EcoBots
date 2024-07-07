@@ -23,7 +23,7 @@ void AVillageGeneratorManager::Tick(float DeltaTime)
 }
 
 // Generates the level by spawning pieces at anchor points
-void AVillageGeneratorManager::GenerateLevel()
+void AVillageGeneratorManager::GenerateLevel_Implementation()
 {
 	int RandBiomIndex; // Index for selecting a random Biom from Biomes
 	int RandPieceIndex; // Index for selecting a random piece from LevelPieces
@@ -37,18 +37,18 @@ void AVillageGeneratorManager::GenerateLevel()
 	for(const auto AnchorPoint : AnchorPoints)
 	{
 		if(GeneratedPieces.Num() > 0) // If there are already generated pieces
-		{
+			{
 			RandPieceIndex = FMath::RandRange(0, Biomes[RandBiomIndex].LevelPieces.Num() - 1); // Select a random piece
 			SpawnLoc = AnchorPoint->GetActorLocation(); // Use the anchor point's location
 			SpawnRot = AnchorPoint->GetActorRotation(); // Use the anchor point's rotation
 			NewActorPiece = GetWorld()->SpawnActor(Biomes[RandBiomIndex].LevelPieces[RandPieceIndex], &SpawnLoc, &SpawnRot);
-		}
+			}
 		else // If no pieces have been generated yet
-		{
+			{
 			SpawnLoc = GetActorLocation(); // Use the manager's location
 			SpawnRot = GetActorRotation(); // Use the manager's rotation
 			NewActorPiece = GetWorld()->SpawnActor(Biomes[RandBiomIndex].LevelPieces[0], &SpawnLoc, &SpawnRot); // Spawn the first piece
-		}
+			}
 
 		AActor* NewPiece = Cast<AActor>(NewActorPiece); // Cast the new piece to AActor
 		GeneratedPieces.Add(NewPiece); // Add the new piece to the list of generated pieces
@@ -57,3 +57,4 @@ void AVillageGeneratorManager::GenerateLevel()
 
 	Destroy(); // Destroy the manager after generating the level
 }
+

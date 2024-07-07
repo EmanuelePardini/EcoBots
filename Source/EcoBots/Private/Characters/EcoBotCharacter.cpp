@@ -43,21 +43,29 @@ void AEcoBotCharacter::BeginPlay()
 
 	// Reference the Animation instance
 	EcoBotAnim = Cast<UEcoBotAnim>(GetMesh()->GetAnimInstance());
-	
+
+	// Add the widget only if it's the local player
+	if (IsLocallyControlled() && !EcoBotWidgetInstance) Server_AddEcoBotWidget();
+
+	// Load the character saved data
+	if (HasAuthority()) LoadCharacterSaved();
+}
+
+void AEcoBotCharacter::Server_AddEcoBotWidget_Implementation()
+{
+	Client_AddEcoBotWidget();
+}
+
+void AEcoBotCharacter::Client_AddEcoBotWidget_Implementation()
+{
 	if (EcoBotWidgetClass)
 	{
 		// Create the widget instance
 		EcoBotWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), EcoBotWidgetClass);
-
-		if (EcoBotWidgetInstance)
-		{
-			// Add the widget to the viewport
-			EcoBotWidgetInstance->AddToViewport();
-		}
+		
+		// Add the widget to the viewport
+		if (EcoBotWidgetInstance) EcoBotWidgetInstance->AddToViewport();
 	}
-
-	// Load the character saved data
-	LoadCharacterSaved();
 }
 
 // Called every frame
@@ -153,6 +161,13 @@ void AEcoBotCharacter::LoadCharacterSaved()
 	LoadCraftData(EcoBotData);
 }
 
+void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
+{
+	// Load and set the transform from the saved data
+	FVector Translation = EcoBotData->GetEcoBotTransform().GetTranslation();
+	if(!Translation.IsZero()) SetActorTransform(EcoBotData->GetEcoBotTransform());
+}
+
 void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
 {
 	// Load and set materials from the saved data
@@ -161,13 +176,6 @@ void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
 	{
 		if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
 	}
-}
-
-void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
-{
-	// Load and set the transform from the saved data
-	FVector Translation = EcoBotData->GetEcoBotTransform().GetTranslation();
-	if(!Translation.IsZero()) SetActorTransform(EcoBotData->GetEcoBotTransform());
 }
 
 void AEcoBotCharacter::LoadStatsData(UEcoBotDataSubsystem* EcoBotData)
@@ -216,5 +224,4 @@ FCharacterData AEcoBotCharacter::GetCharacterData()
 	CharacterData.CraftInfo = CraftComponent->SaveCraftRecipes();
 	
 	return CharacterData;
-	
 }

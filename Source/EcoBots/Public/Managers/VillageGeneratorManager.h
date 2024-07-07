@@ -37,6 +37,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	UFUNCTION()
+	UFUNCTION(Server, Reliable)
 	void GenerateLevel();
 };

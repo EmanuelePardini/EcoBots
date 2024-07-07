@@ -69,7 +69,10 @@ protected:
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	UFUNCTION(Server, Unreliable)
+	void Server_AddEcoBotWidget();
+	UFUNCTION(Client, Unreliable)
+	void Client_AddEcoBotWidget();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -84,8 +87,12 @@ public:
 	void EndRun();
 
 	//Interaction Manage
+	UFUNCTION()
 	void Interact();
+	
+	UFUNCTION()
 	void EndInteract();
+	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void OnBeginInteract();
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)

@@ -24,7 +24,8 @@ public:
 	bool HasInteracted = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool IsFlying = false;
-	
+
+	UFUNCTION(Server, Reliable)
 	void Animate(ACharacter* Character);
 	FVector GetDeltaRoot(){return ConsumeExtractedRootMotion(1).GetRootMotionTransform().GetLocation();}
 };

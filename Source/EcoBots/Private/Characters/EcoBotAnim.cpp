@@ -5,10 +5,10 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-void UEcoBotAnim::Animate(ACharacter* Character)
+
+void UEcoBotAnim::Animate_Implementation(ACharacter* Character)
 {
-		//Update the parameters based on the character movement
-		Grounded = !Character->GetCharacterMovement()->IsFalling();
-		Speed = Character->GetCharacterMovement()->Velocity.Size();
-	
+	//Update the parameters based on the character movement
+	Grounded = !Character->GetCharacterMovement()->IsFalling();
+	Speed = Character->GetCharacterMovement()->Velocity.Size();
 }
