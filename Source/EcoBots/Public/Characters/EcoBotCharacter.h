@@ -34,13 +34,18 @@ protected:
 	
 	//Movement
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Movement")
-	float WalkSpeed = 500.f;
+	float WalkSpeed = 250.f;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Movement")
+	float RunSpeed = 500.f;
 
 	//Input States
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="States")
 	bool bIsPlayable = true;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="States")
+	bool bLookPitchFixed = true;
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category="States")
 	bool IsInteracting = false;
+
 
 	//Components
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Components")
@@ -71,6 +76,12 @@ public:
 
 	//Primary Actions
 	void Move(const FInputActionValue& Value);
+	void Look(const FInputActionValue& Value);
+	void DoJump();
+
+	//Run Manage
+	void Run();
+	void EndRun();
 
 	//Interaction Manage
 	void Interact();

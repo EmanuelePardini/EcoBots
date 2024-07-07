@@ -42,6 +42,16 @@ void AEcoBotController::SetupInputComponent()
 		//Moving
 		EnhancedInputComponent->BindAction(InputData->Move, ETriggerEvent::Triggered, this, &AEcoBotController::Move);
 		
+		//Jumping
+		EnhancedInputComponent->BindAction(InputData->Jump, ETriggerEvent::Triggered, this, &AEcoBotController::Jump);
+		EnhancedInputComponent->BindAction(InputData->EnableLook, ETriggerEvent::Started, this, &AEcoBotController::EnableLook);
+		EnhancedInputComponent->BindAction(InputData->EnableLook, ETriggerEvent::Completed, this, &AEcoBotController::DisableLook);
+		EnhancedInputComponent->BindAction(InputData->Look, ETriggerEvent::Triggered, this, &AEcoBotController::Look);
+
+		//Running
+		EnhancedInputComponent->BindAction(InputData->Run, ETriggerEvent::Started, this, &AEcoBotController::Run);
+		EnhancedInputComponent->BindAction(InputData->Run, ETriggerEvent::Completed, this, &AEcoBotController::EndRun);
+		
 		//Interacting
 		EnhancedInputComponent->BindAction(InputData->Interact, ETriggerEvent::Started, this, &AEcoBotController::Interact);
 	}
@@ -50,6 +60,36 @@ void AEcoBotController::SetupInputComponent()
 void AEcoBotController::Move(const FInputActionValue& Value)
 {
 	if(EcoBotCharacter) EcoBotCharacter->Move(Value);
+}
+
+void AEcoBotController::EnableLook(const FInputActionValue& Value)
+{
+	if(EcoBotCharacter) LookEnabled = true;
+}
+
+void AEcoBotController::DisableLook(const FInputActionValue& Value)
+{
+	if(EcoBotCharacter) LookEnabled = false;
+}
+
+void AEcoBotController::Look(const FInputActionValue& Value)
+{
+	if(EcoBotCharacter && LookEnabled) EcoBotCharacter->Look(Value);
+}
+
+void AEcoBotController::Jump(const FInputActionValue& Value)
+{
+	if(EcoBotCharacter) EcoBotCharacter->DoJump();
+}
+
+void AEcoBotController::Run(const FInputActionValue& Value)
+{
+	if(EcoBotCharacter) EcoBotCharacter->Run();
+}
+
+void AEcoBotController::EndRun(const FInputActionValue& Value)
+{
+	if(EcoBotCharacter) EcoBotCharacter->EndRun();
 }
 
 void AEcoBotController::Interact(const FInputActionValue& Value)

@@ -72,18 +72,50 @@ void AEcoBotCharacter::Move(const FInputActionValue& Value)
 	// Prevent movement if the character is interacting
 	if(IsInteracting) return;
 
-	// Obtain the controller's rotation and create a rotation on the yaw axis
+	// Obtains the controller's rotation and create a rotation on the yaw axis
 	FVector2d MovementValue = Value.Get<FVector2d>();
 	const FRotator Rotation = Controller->GetControlRotation();
 	const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-	// Get the forward and right directions based on the Yaw rotation
+	// Gets the forward and right directions based on the Yaw rotation
 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-	// Add movement input along the forward axis (ForwardDirection) and the right axis (RightDirection)
+	// Adds movement input along the forward axis (ForwardDirection) and the right axis (RightDirection)
 	AddMovementInput(ForwardDirection, MovementValue.Y);
 	AddMovementInput(RightDirection, MovementValue.X);
+}
+
+void AEcoBotCharacter::Look(const FInputActionValue& Value)
+{
+	FVector2d LookValue = Value.Get<FVector2d>();
+	
+	// Adds input to control the rotation
+	AddControllerYawInput(LookValue.X);
+	if(!bLookPitchFixed) AddControllerPitchInput(LookValue.Y);
+}
+
+void AEcoBotCharacter::DoJump()
+{
+	// Prevent jumping if the character is interacting
+	if(IsInteracting) return;
+	Jump();
+}
+
+void AEcoBotCharacter::Run()
+{
+	// Prevent running if the character is interacting
+	if(IsInteracting) return;
+	
+	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+}
+
+void AEcoBotCharacter::EndRun()
+{
+	// Prevent ending run if the character is interacting
+	if(IsInteracting) return;
+	
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 void AEcoBotCharacter::Interact()
