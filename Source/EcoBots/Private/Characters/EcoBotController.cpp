@@ -41,12 +41,12 @@ void AEcoBotController::SetupInputComponent()
 	{
 		//Moving
 		EnhancedInputComponent->BindAction(InputData->Move, ETriggerEvent::Triggered, this, &AEcoBotController::Move);
-		
-		//Jumping
-		EnhancedInputComponent->BindAction(InputData->Jump, ETriggerEvent::Triggered, this, &AEcoBotController::Jump);
 		EnhancedInputComponent->BindAction(InputData->EnableLook, ETriggerEvent::Started, this, &AEcoBotController::EnableLook);
 		EnhancedInputComponent->BindAction(InputData->EnableLook, ETriggerEvent::Completed, this, &AEcoBotController::DisableLook);
 		EnhancedInputComponent->BindAction(InputData->Look, ETriggerEvent::Triggered, this, &AEcoBotController::Look);
+		
+		//Jumping
+		EnhancedInputComponent->BindAction(InputData->Jump, ETriggerEvent::Triggered, this, &AEcoBotController::Jump);
 
 		//Running
 		EnhancedInputComponent->BindAction(InputData->Run, ETriggerEvent::Started, this, &AEcoBotController::Run);
