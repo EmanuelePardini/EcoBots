@@ -83,15 +83,38 @@ public:
 	void DoJump();
 
 	//Run Manage
+	UFUNCTION()
 	void Run();
-	void EndRun();
+	UFUNCTION(Reliable,Server,WithValidation)
+	void Server_Run();
+	bool Server_Run_Validate();
+	void Server_Run_Implementation();
 
+	UFUNCTION()
+	void EndRun();
+	UFUNCTION(Reliable,Server,WithValidation)
+	void Server_EndRun();
+	bool Server_EndRun_Validate();
+	void Server_EndRun_Implementation();
+	
 	//Interaction Manage
 	UFUNCTION()
 	void Interact();
+	UFUNCTION(Reliable,Server,WithValidation)
+	void Server_Interact();
+	bool Server_Interact_Validate();
+	void Server_Interact_Implementation();
+	UFUNCTION(Reliable, NetMulticast)
+	void Client_Interact();
 	
 	UFUNCTION()
 	void EndInteract();
+	UFUNCTION(Reliable,Server,WithValidation)
+	void Server_EndInteract();
+	bool Server_EndInteract_Validate();
+	void Server_EndInteract_Implementation();
+	UFUNCTION(Reliable, NetMulticast)
+	void Client_EndInteract();
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void OnBeginInteract();
@@ -120,7 +143,7 @@ public:
 	//Data Savings
 	UFUNCTION(BlueprintCallable)
 	void LoadCharacterSaved();
-	UFUNCTION(BlueprintCallable)
+	
 	void LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData);
 	UFUNCTION(BlueprintCallable)
 	void LoadTransformData(UEcoBotDataSubsystem* EcoBotData);

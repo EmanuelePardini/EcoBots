@@ -48,7 +48,7 @@ void AEcoBotCharacter::BeginPlay()
 	if (IsLocallyControlled() && !EcoBotWidgetInstance) Server_AddEcoBotWidget();
 
 	// Load the character saved data
-	if (HasAuthority()) LoadCharacterSaved();
+	LoadCharacterSaved();
 }
 
 void AEcoBotCharacter::Server_AddEcoBotWidget_Implementation()
@@ -112,21 +112,58 @@ void AEcoBotCharacter::DoJump()
 
 void AEcoBotCharacter::Run()
 {
-	// Prevent running if the character is interacting
+	// Set the speed on the client side
+	if (IsInteracting) return;
+	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+
+	// Tell the server to set the speed as well
+	if (!HasAuthority()) Server_Run();
+}
+
+bool AEcoBotCharacter::Server_Run_Validate()
+{
+	return true;
+}
+
+void AEcoBotCharacter::Server_Run_Implementation()
+{
 	if(IsInteracting) return;
-	
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
 }
 
 void AEcoBotCharacter::EndRun()
 {
-	// Prevent ending run if the character is interacting
-	if(IsInteracting) return;
-	
+	// Set the speed on the client side
+	if (IsInteracting) return;
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+
+	// Tell the server to set the speed as well
+	if (!HasAuthority()) Server_EndRun();
+}
+
+bool AEcoBotCharacter::Server_EndRun_Validate()
+{
+	return true;
+}
+
+void AEcoBotCharacter::Server_EndRun_Implementation()
+{
+	// Set the speed on the client side
+	if (IsInteracting) return;
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 void AEcoBotCharacter::Interact()
+{
+	Server_Interact();
+}
+
+void AEcoBotCharacter::Server_Interact_Implementation()
+{
+	Client_Interact();
+}
+
+void AEcoBotCharacter::Client_Interact_Implementation()
 {
 	// Set interaction state and trigger the interaction animation
 	if(EcoBotAnim) EcoBotAnim->HasInteracted = true;
@@ -136,7 +173,27 @@ void AEcoBotCharacter::Interact()
 	OnBeginInteract(); //VFX will seem like Men In Black ;)
 }
 
+bool AEcoBotCharacter::Server_Interact_Validate()
+{
+	return true;
+}
+
 void AEcoBotCharacter::EndInteract()
+{
+	Server_EndInteract();
+}
+
+bool AEcoBotCharacter::Server_EndInteract_Validate()
+{
+	return true;
+}
+
+void AEcoBotCharacter::Server_EndInteract_Implementation()
+{
+	Client_EndInteract();
+}
+
+void AEcoBotCharacter::Client_EndInteract_Implementation()
 {
 	// Reset interaction state and end the interaction animation
 	if(EcoBotAnim) EcoBotAnim->HasInteracted = false;
@@ -147,18 +204,21 @@ void AEcoBotCharacter::EndInteract()
 
 void AEcoBotCharacter::LoadCharacterSaved()
 {
-	// Get Character Data
-	UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
+	if(HasAuthority())
+	{
+		// Get Character Data
+		UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
 	
-	// Check if data is valid and the character is playable
-	if(!EcoBotData || !bIsPlayable) return;
+		// Check if data is valid and the character is playable
+		if(!EcoBotData || !bIsPlayable) return;
 	
-	// Load different parts of the character data
-	LoadMaterialsData(EcoBotData);
-	LoadTransformData(EcoBotData);
-	LoadStatsData(EcoBotData);
-	LoadInventoryData(EcoBotData);
-	LoadCraftData(EcoBotData);
+		// Load different parts of the character data
+		LoadMaterialsData(EcoBotData);
+		LoadTransformData(EcoBotData);
+		LoadStatsData(EcoBotData);
+		LoadInventoryData(EcoBotData);
+		LoadCraftData(EcoBotData);
+	}
 }
 
 void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
@@ -169,12 +229,17 @@ void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
 }
 
 void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
-{
-	// Load and set materials from the saved data
+{ //TODO: Leave for last character fixes, adapt the rest of the game first
+	// Get materials from the data subsystem
 	TArray<UMaterialInterface*> Materials = EcoBotData->GetEcoBotMaterials();
-	for (int i = 0; i < Materials.Num(); i++)
+
+	// Set materials locally
+	for (int i = 0; i < Materials.Num(); ++i)
 	{
-		if(Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
+		if (Materials[i])
+		{
+			GetMesh()->SetMaterial(i, Materials[i]);
+		}
 	}
 }
 
