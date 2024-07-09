@@ -63,17 +63,24 @@ protected:
 
 	//UI
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
-	TSubclassOf<UUserWidget> EcoBotWidgetClass;
+	TSubclassOf<UUserWidget> HostWidgetClass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
+	TSubclassOf<UUserWidget> ClientWidgetClass;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="UI")
 	UUserWidget* EcoBotWidgetInstance;
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	UFUNCTION(Server, Unreliable)
+	void AddEcoBotWidget();
+	UFUNCTION(Server, Unreliable, WithValidation)
 	void Server_AddEcoBotWidget();
+	bool Server_AddEcoBotWidget_Validate();
+	void Server_AddEcoBotWidget_Implementation();
+	
 	UFUNCTION(Client, Unreliable)
 	void Client_AddEcoBotWidget();
-public:	
+public:
+	void CreateAndAddWidget(TSubclassOf<UUserWidget> WidgetClass);
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -143,8 +150,9 @@ public:
 	//Data Savings
 	UFUNCTION(BlueprintCallable)
 	void LoadCharacterSaved();
-	
+	UFUNCTION(BlueprintCallable)
 	void LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData);
+
 	UFUNCTION(BlueprintCallable)
 	void LoadTransformData(UEcoBotDataSubsystem* EcoBotData);
 	UFUNCTION(BlueprintCallable)

@@ -1,5 +1,6 @@
 #include "Characters/EcoBotCharacter.h"
 
+#include "EngineUtils.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameInstance/EcoBotDataSubsystem.h"
@@ -35,7 +36,6 @@ AEcoBotCharacter::AEcoBotCharacter()
 	CraftComponent = CreateDefaultSubobject<UCraftComponent>("CraftComponent");
 	CraftComponent->OnCraftChanged.AddDynamic(this, &AEcoBotCharacter::OnCraftChanged);
 }
-
 // Called when the game starts or when spawned
 void AEcoBotCharacter::BeginPlay()
 {
@@ -44,27 +44,71 @@ void AEcoBotCharacter::BeginPlay()
 	// Reference the Animation instance
 	EcoBotAnim = Cast<UEcoBotAnim>(GetMesh()->GetAnimInstance());
 
-	// Add the widget only if it's the local player
-	if (IsLocallyControlled() && !EcoBotWidgetInstance) Server_AddEcoBotWidget();
+	// Add the widget only if it is playable
+	if (bIsPlayable && !EcoBotWidgetInstance)
+	{
+		AddEcoBotWidget();
+	}
 
 	// Load the character saved data
 	LoadCharacterSaved();
 }
 
+void AEcoBotCharacter::AddEcoBotWidget()
+{
+	if (HasAuthority())
+	{
+		if (IsLocallyControlled())
+		{
+			// Add the widget on the host only if it is locally controlled
+			if (HostWidgetClass)
+			{
+				CreateAndAddWidget(HostWidgetClass);
+			}
+		}
+	}
+	else
+	{
+		// If not authority, request the server to add the widget
+		Server_AddEcoBotWidget();
+	}
+}
+
+bool AEcoBotCharacter::Server_AddEcoBotWidget_Validate()
+{
+	return true;
+}
+
 void AEcoBotCharacter::Server_AddEcoBotWidget_Implementation()
 {
-	Client_AddEcoBotWidget();
+	// Ensure the widget is only added on clients
+	if (!IsLocallyControlled())
+	{
+		Client_AddEcoBotWidget();
+	}
 }
 
 void AEcoBotCharacter::Client_AddEcoBotWidget_Implementation()
 {
-	if (EcoBotWidgetClass)
+	if (ClientWidgetClass && !EcoBotWidgetInstance)
 	{
 		// Create the widget instance
-		EcoBotWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), EcoBotWidgetClass);
-		
+		CreateAndAddWidget(ClientWidgetClass);
+	}
+}
+
+void AEcoBotCharacter::CreateAndAddWidget(TSubclassOf<UUserWidget> WidgetClass)
+{
+	if (WidgetClass && !EcoBotWidgetInstance)
+	{
+		// Create the widget instance
+		EcoBotWidgetInstance = CreateWidget<UUserWidget>(GetWorld(), WidgetClass);
+
 		// Add the widget to the viewport
-		if (EcoBotWidgetInstance) EcoBotWidgetInstance->AddToViewport();
+		if (EcoBotWidgetInstance)
+		{
+			EcoBotWidgetInstance->AddToViewport();
+		}
 	}
 }
 
@@ -155,6 +199,7 @@ void AEcoBotCharacter::Server_EndRun_Implementation()
 
 void AEcoBotCharacter::Interact()
 {
+	if(HasAuthority()) InteractionComponent->Interact(this);
 	Server_Interact();
 }
 
@@ -169,7 +214,6 @@ void AEcoBotCharacter::Client_Interact_Implementation()
 	if(EcoBotAnim) EcoBotAnim->HasInteracted = true;
 	IsInteracting = true;
 	
-	InteractionComponent->Interact(this); 
 	OnBeginInteract(); //VFX will seem like Men In Black ;)
 }
 
@@ -180,6 +224,7 @@ bool AEcoBotCharacter::Server_Interact_Validate()
 
 void AEcoBotCharacter::EndInteract()
 {
+	if(HasAuthority()) InteractionComponent->EndInteract(this);
 	Server_EndInteract();
 }
 
@@ -198,20 +243,19 @@ void AEcoBotCharacter::Client_EndInteract_Implementation()
 	// Reset interaction state and end the interaction animation
 	if(EcoBotAnim) EcoBotAnim->HasInteracted = false;
 	IsInteracting = false;
-	InteractionComponent->EndInteract(this);
+	
 	OnEndInteract();
 }
 
 void AEcoBotCharacter::LoadCharacterSaved()
-{
-	if(HasAuthority())
+{	if(HasAuthority())
 	{
 		// Get Character Data
 		UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
-	
+		
 		// Check if data is valid and the character is playable
 		if(!EcoBotData || !bIsPlayable) return;
-	
+		
 		// Load different parts of the character data
 		LoadMaterialsData(EcoBotData);
 		LoadTransformData(EcoBotData);
@@ -229,19 +273,16 @@ void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
 }
 
 void AEcoBotCharacter::LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData)
-{ //TODO: Leave for last character fixes, adapt the rest of the game first
+{
 	// Get materials from the data subsystem
 	TArray<UMaterialInterface*> Materials = EcoBotData->GetEcoBotMaterials();
 
-	// Set materials locally
 	for (int i = 0; i < Materials.Num(); ++i)
 	{
-		if (Materials[i])
-		{
-			GetMesh()->SetMaterial(i, Materials[i]);
-		}
+		if (Materials[i]) GetMesh()->SetMaterial(i, Materials[i]);
 	}
 }
+
 
 void AEcoBotCharacter::LoadStatsData(UEcoBotDataSubsystem* EcoBotData)
 {
