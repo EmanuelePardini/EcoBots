@@ -4,6 +4,7 @@
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameInstance/EcoBotDataSubsystem.h"
+#include "Kismet/GameplayStatics.h"
 #include "Managers/WorldCatastrophesManager.h"
 #include "SaveGame/CharacterData.h"
 
@@ -248,7 +249,7 @@ void AEcoBotCharacter::Client_EndInteract_Implementation()
 }
 
 void AEcoBotCharacter::LoadCharacterSaved()
-{	if(HasAuthority())
+{	if(HasAuthority() && IsLocallyControlled())
 	{
 		// Get Character Data
 		UEcoBotDataSubsystem* EcoBotData = GetGameInstance()->GetSubsystem<UEcoBotDataSubsystem>();
@@ -263,8 +264,53 @@ void AEcoBotCharacter::LoadCharacterSaved()
 		LoadInventoryData(EcoBotData);
 		LoadCraftData(EcoBotData);
 	}
+else
+	{
+		// Request the server to send material data
+		Server_RequestMaterialsData();
+	}
 }
 
+void AEcoBotCharacter::Server_RequestMaterialsData_Implementation()
+{
+	// Find an actor of this class that has authority
+	for (TActorIterator<AEcoBotCharacter> It(GetWorld()); It; ++It)
+	{
+		AEcoBotCharacter* EcoBotCharacter = *It;
+		if (EcoBotCharacter && EcoBotCharacter->HasAuthority() && !EcoBotCharacter->bIsPlayable)
+		{
+			// Get the materials from the actor with authority
+			TArray<UMaterialInterface*> Materials;
+			if (EcoBotCharacter->GetMesh())
+			{
+				for (int32 i = 0; i < EcoBotCharacter->GetMesh()->GetNumMaterials(); i++)
+				{
+					Materials.Add(EcoBotCharacter->GetMesh()->GetMaterial(i));
+				}
+			}
+
+			// Send materials data to the client
+			Client_ReceiveMaterialsData(Materials);
+			return;
+		}
+	}
+}
+
+bool AEcoBotCharacter::Server_RequestMaterialsData_Validate()
+{
+	return true;
+}
+
+void AEcoBotCharacter::Client_ReceiveMaterialsData_Implementation(const TArray<UMaterialInterface*>& Materials)
+{
+	if (GetMesh())
+	{
+		for (int32 i = 0; i < Materials.Num(); i++)
+		{
+			GetMesh()->SetMaterial(i, Materials[i]);
+		}
+	}
+}
 void AEcoBotCharacter::LoadTransformData(UEcoBotDataSubsystem* EcoBotData)
 {
 	// Load and set the transform from the saved data

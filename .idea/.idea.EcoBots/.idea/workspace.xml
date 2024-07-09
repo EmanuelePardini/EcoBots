@@ -8,7 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb2df045-4699-4c0b-a07b-01b44c1bc269" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_ClientWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Widgets/InGame/BP_ClientWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EcoBots/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Private/Characters/EcoBotCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/EcoBots/Public/Characters/EcoBotCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +179,7 @@
       <option name="presentableId" value="Default" />
       <updated>1720484500087</updated>
       <workItem from="1720484502042" duration="179000" />
-      <workItem from="1720484851200" duration="4138000" />
+      <workItem from="1720484851200" duration="5631000" />
     </task>
     <servers />
   </component>

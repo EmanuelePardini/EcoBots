@@ -150,9 +150,14 @@ public:
 	//Data Savings
 	UFUNCTION(BlueprintCallable)
 	void LoadCharacterSaved();
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_RequestMaterialsData();
+	UFUNCTION(Client, Reliable)
+	void Client_ReceiveMaterialsData(const TArray<UMaterialInterface*>& Materials);
+	
 	UFUNCTION(BlueprintCallable)
 	void LoadMaterialsData(UEcoBotDataSubsystem* EcoBotData);
-
 	UFUNCTION(BlueprintCallable)
 	void LoadTransformData(UEcoBotDataSubsystem* EcoBotData);
 	UFUNCTION(BlueprintCallable)
