@@ -1,5 +1,3 @@
- // Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,7 +13,7 @@ class ECOBOTS_API UEcoBotStatsComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UEcoBotStatsComponent();
-		
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FStat HealthStat;
 
@@ -25,7 +23,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	FStat ThirstStat;
 
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnValueChanged,float, HealthPercent, float, HungerPercent, float, ThirstPercent);
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnValueChanged, float, HealthPercent, float, HungerPercent, float, ThirstPercent);
 	FOnValueChanged OnValueChanged;
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnHealthFinished);
 	FOnHealthFinished OnHealthFinished;
@@ -37,14 +35,52 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
 	UFUNCTION(BlueprintCallable)
-	void IncrementStat(UPARAM(ref)FStat& Stat, float Amount);
+	void IncrementHealth(float Amount);
+
+	UFUNCTION(BlueprintCallable)
+	void IncrementHunger(float Amount);
+
+	UFUNCTION(BlueprintCallable)
+	void IncrementThirst(float Amount);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_IncrementHealth(float Amount);
+	bool Server_IncrementHealth_Validate(float Amount);
+	void Server_IncrementHealth_Implementation(float Amount);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_IncrementHunger(float Amount);
+	bool Server_IncrementHunger_Validate(float Amount);
+	void Server_IncrementHunger_Implementation(float Amount);
+
+	UFUNCTION(Server, Reliable, WithValidation)
+	void Server_IncrementThirst(float Amount);
+	bool Server_IncrementThirst_Validate(float Amount);
+	void Server_IncrementThirst_Implementation(float Amount);
+
 	UFUNCTION(BlueprintCallable)
 	void ManageStatsTimer(float DeltaTime);
+
 	UFUNCTION(BlueprintCallable)
-	void ManageSingleStatTimer(UPARAM(ref)FStat& Stat,float DeltaTime);
+	void ManageHealthTimer(float DeltaTime);
+
 	UFUNCTION(BlueprintCallable)
-	void UpdateStat(UPARAM(ref)FStat& Stat, float Value);
+	void ManageHungerTimer(float DeltaTime);
+
+	UFUNCTION(BlueprintCallable)
+	void ManageThirstTimer(float DeltaTime);
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateHealth(float Value);
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateHunger(float Value);
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateThirst(float Value);
+
 	UFUNCTION(BlueprintCallable)
 	void Die();
 };

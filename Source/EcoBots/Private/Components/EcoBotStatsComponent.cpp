@@ -1,11 +1,9 @@
 #include "Components/EcoBotStatsComponent.h"
-#include "Characters/EcoBotCharacter.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values for this component's properties
 UEcoBotStatsComponent::UEcoBotStatsComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.
-	// You can turn these features off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// Initialize default values for stats
@@ -32,90 +30,172 @@ UEcoBotStatsComponent::UEcoBotStatsComponent()
 	ThirstStat.DecrementDelay = 40.f;
 	ThirstStat.DecrementAmount = -50.f;
 	ThirstStat.bToUse = true;
+
+	SetIsReplicatedByDefault(true);
 }
 
-
-
-// Called when the game starts
 void UEcoBotStatsComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// Initialize current values to max values at the start
 	HealthStat.CurrentValue = HealthStat.MaxValue;
 	HungerStat.CurrentValue = HungerStat.MaxValue;
 	ThirstStat.CurrentValue = ThirstStat.MaxValue;
 }
 
-// Called every frame
 void UEcoBotStatsComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// Manage timers for decrementing stats
 	ManageStatsTimer(DeltaTime);
 }
 
-
-
-// Increment stat by a specified amount
-void UEcoBotStatsComponent::IncrementStat(FStat& Stat, float Amount)
+void UEcoBotStatsComponent::IncrementHealth(float Amount)
 {
-	if(!Stat.bToUse) return;
-	
-	Stat.CurrentValue += Amount;
-	
-	// Clamp stat value between 0 and max value
-	if (Stat.CurrentValue > Stat.MaxValue) Stat.CurrentValue = Stat.MaxValue;
-	if (Stat.CurrentValue <= 0)
+	if (GetOwnerRole() == ROLE_Authority)
 	{
-		Stat.CurrentValue = 0;
-		if(Stat.StatName == HealthStat.StatName) Die();
+		UpdateHealth(HealthStat.CurrentValue + Amount);
 	}
-	
-	// Update percentage value and broadcast change
-	UpdateStat(Stat, Stat.CurrentValue);
+	else
+	{
+		Server_IncrementHealth(Amount);
+	}
+}
+
+void UEcoBotStatsComponent::IncrementHunger(float Amount)
+{
+	if (GetOwnerRole() == ROLE_Authority)
+	{
+		UpdateHunger(HungerStat.CurrentValue + Amount);
+	}
+	else
+	{
+		Server_IncrementHunger(Amount);
+	}
+}
+
+void UEcoBotStatsComponent::IncrementThirst(float Amount)
+{
+	if (GetOwnerRole() == ROLE_Authority)
+	{
+		UpdateThirst(ThirstStat.CurrentValue + Amount);
+	}
+	else
+	{
+		Server_IncrementThirst(Amount);
+	}
+}
+
+bool UEcoBotStatsComponent::Server_IncrementHealth_Validate(float Amount)
+{
+	return true;
+}
+
+void UEcoBotStatsComponent::Server_IncrementHealth_Implementation(float Amount)
+{
+	IncrementHealth(Amount);
+}
+
+bool UEcoBotStatsComponent::Server_IncrementHunger_Validate(float Amount)
+{
+	return true;
+}
+
+void UEcoBotStatsComponent::Server_IncrementHunger_Implementation(float Amount)
+{
+	IncrementHunger(Amount);
+}
+
+bool UEcoBotStatsComponent::Server_IncrementThirst_Validate(float Amount)
+{
+	return true;
+}
+
+void UEcoBotStatsComponent::Server_IncrementThirst_Implementation(float Amount)
+{
+	IncrementThirst(Amount);
+}
+
+void UEcoBotStatsComponent::ManageStatsTimer(float DeltaTime)
+{
+	ManageHealthTimer(DeltaTime);
+	ManageHungerTimer(DeltaTime);
+	ManageThirstTimer(DeltaTime);
+}
+
+void UEcoBotStatsComponent::ManageHealthTimer(float DeltaTime)
+{
+	if (!HealthStat.bToUse) return;
+
+	HealthStat.DecrementTimer += DeltaTime;
+	if (HealthStat.DecrementTimer >= HealthStat.DecrementDelay)
+	{
+		IncrementHealth(HealthStat.DecrementAmount);
+		HealthStat.DecrementTimer = 0;
+	}
+}
+
+void UEcoBotStatsComponent::ManageHungerTimer(float DeltaTime)
+{
+	if (!HungerStat.bToUse) return;
+
+	HungerStat.DecrementTimer += DeltaTime;
+	if (HungerStat.DecrementTimer >= HungerStat.DecrementDelay)
+	{
+		IncrementHunger(HungerStat.DecrementAmount);
+		HungerStat.DecrementTimer = 0;
+	}
+}
+
+void UEcoBotStatsComponent::ManageThirstTimer(float DeltaTime)
+{
+	if (!ThirstStat.bToUse) return;
+
+	ThirstStat.DecrementTimer += DeltaTime;
+	if (ThirstStat.DecrementTimer >= ThirstStat.DecrementDelay)
+	{
+		IncrementThirst(ThirstStat.DecrementAmount);
+		ThirstStat.DecrementTimer = 0;
+	}
+}
+
+void UEcoBotStatsComponent::UpdateHealth(float Value)
+{
+	if (!HealthStat.bToUse) return;
+
+	HealthStat.CurrentValue = FMath::Clamp(Value, 0.0f, HealthStat.MaxValue);
+	HealthStat.PercentValue = HealthStat.CurrentValue / HealthStat.MaxValue;
+
+	OnValueChanged.Broadcast(HealthStat.PercentValue, HungerStat.PercentValue, ThirstStat.PercentValue);
+
+	if (HealthStat.CurrentValue <= 0)
+	{
+		Die();
+	}
+}
+
+void UEcoBotStatsComponent::UpdateHunger(float Value)
+{
+	if (!HungerStat.bToUse) return;
+
+	HungerStat.CurrentValue = FMath::Clamp(Value, 0.0f, HungerStat.MaxValue);
+	HungerStat.PercentValue = HungerStat.CurrentValue / HungerStat.MaxValue;
+
 	OnValueChanged.Broadcast(HealthStat.PercentValue, HungerStat.PercentValue, ThirstStat.PercentValue);
 }
 
-// Manage timers for decrementing stats over time
-void UEcoBotStatsComponent::ManageStatsTimer(float DeltaTime)
+void UEcoBotStatsComponent::UpdateThirst(float Value)
 {
-	ManageSingleStatTimer(HungerStat, DeltaTime);
-	ManageSingleStatTimer(ThirstStat, DeltaTime);
-	
-	// Manage health decrement timer if hunger or thirst is zero or is not to use
-	if ((HungerStat.CurrentValue <= 0 || !HungerStat.bToUse) || (ThirstStat.CurrentValue <= 0 || !ThirstStat.bToUse))
-		ManageSingleStatTimer(HealthStat, DeltaTime);
+	if (!ThirstStat.bToUse) return;
 
-	// Manage health increment timer if hunger or thirst is zero or is not to use
-	if ((HungerStat.CurrentValue <= 0 || !HungerStat.bToUse) || (ThirstStat.CurrentValue <= 0 || !ThirstStat.bToUse))
-		ManageSingleStatTimer(HealthStat, DeltaTime);
+	ThirstStat.CurrentValue = FMath::Clamp(Value, 0.0f, ThirstStat.MaxValue);
+	ThirstStat.PercentValue = ThirstStat.CurrentValue / ThirstStat.MaxValue;
+
+	OnValueChanged.Broadcast(HealthStat.PercentValue, HungerStat.PercentValue, ThirstStat.PercentValue);
 }
 
-void UEcoBotStatsComponent::ManageSingleStatTimer(FStat& Stat, float DeltaTime)
-{
-	if(!Stat.bToUse) return;
-	
-	Stat.DecrementTimer += DeltaTime;
-	if (Stat.DecrementTimer >= Stat.DecrementDelay)
-	{
-		IncrementStat(Stat, Stat.DecrementAmount);
-		Stat.DecrementTimer = 0;
-	}
-}
-
-void UEcoBotStatsComponent::UpdateStat(FStat& Stat, float Value)
-{
-	if(!Stat.bToUse) return;
-	
-	//Load the last stat value and align all parameters
-	Stat.CurrentValue = Value;
-	Stat.PercentValue = Value / Stat.MaxValue;
-}
-
-// Handle character death
 void UEcoBotStatsComponent::Die()
 {
 	OnHealthFinished.Broadcast();
 }
+

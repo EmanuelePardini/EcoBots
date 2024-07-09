@@ -52,7 +52,7 @@ void AWorldCatastrophesManager::ManageCatastrophes(float DeltaTime)
 void AWorldCatastrophesManager::Catastrophe()
 {
 	OnCatastrophe();
-	WorldStatsComponent->IncrementStat(WorldStatsComponent->HealthStat, CatastropheDamage);
+	WorldStatsComponent->IncrementHealth(CatastropheDamage);
 
 	if(ClassesToDestroy.IsEmpty()) return;
 	
@@ -99,7 +99,7 @@ void AWorldCatastrophesManager::SetWorldManagerData()
 		FWorldManagerData WorldManagerData = SaveGameRef->WorldManagerData;
 		if(WorldManagerData.HealthValue > 0)
 		{
-			WorldStatsComponent->UpdateStat(WorldStatsComponent->HealthStat, WorldManagerData.HealthValue);
+			WorldStatsComponent->UpdateHealth(WorldManagerData.HealthValue);
 			OnStatsChange(WorldStatsComponent->HealthStat.PercentValue);
 			//Called again in blueprint if the Widget is not valid at the first try, check on BP_WorldCatastrophesManager
 		}
