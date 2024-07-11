@@ -26,15 +26,12 @@ Menu System
 -Procedural Level Generation
   
 ## How to Use:
-0. Create a Unreal Engine project
-1. Copy Source classes and import HUD plugin
+1. Create a Unreal Engine project
 2. Setup in Engine to build Your game
 
 ## Demonstration:
 
- [Homemade Trailer](https://www.youtube.com/watch?v=kqqsrD_bwwg)   |
- [Demo Gameplay](https://youtu.be/k9NGu7PUEW0)
-
+ [ShowReel](https://www.youtube.com/watch?v=H_vFu0LZ_LY)
  ## Download:
  [Itch.io](https://cyborg3000.itch.io/ecobots)
  
