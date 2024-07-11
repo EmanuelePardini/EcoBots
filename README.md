@@ -10,22 +10,22 @@ The code for a Survival/Life Simulation Game made for my Rainbow Academy thesis 
 All customizable:
 
 Menu System
--Locomotion System
--Character Personalization System
--Video and Sound Personalization System
--Quest System
--Money System
--Stats System
--HUD System
--Villagers System
--Inventory System
--Interaction System
--Build System
--Gathering Resources System
--Save Data System
--Day/Night System
--Catastrophes / World Condition System
--Procedural Level Generation
+,Locomotion System
+,Character Personalization System
+,Video and Sound Personalization System
+,Quest System
+,Money System
+,Stats System
+,HUD System
+,Villagers System
+,Inventory System
+,Interaction System
+,Build System
+,Gathering Resources System
+,Save Data System
+,Day/Night System
+,Catastrophes / World Condition System
+,Procedural Level Generation
   
 ## How to Use:
 1. Create a Unreal Engine project
