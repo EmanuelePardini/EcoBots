@@ -1,6 +1,7 @@
 # EcoBots
 ![EcoBots ico](media/wallpaper.png)
-![EcoBots UML](UML_EcoBots.pdf)
+
+#![EcoBots UML](UML_EcoBots.pdf)
 
 ## Description:
 The code for a Survival/Life Simulation Game made for my Rainbow Academy thesis in one month.
