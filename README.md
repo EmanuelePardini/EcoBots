@@ -30,6 +30,7 @@ Menu System
 ## How to Use:
 1. Create a Unreal Engine project
 2. Setup in Engine to build Your game
+3. Required Assets in folder: Stack O Bot, Lush Stylized Environment Set, Stylized Landscape 5 Biomes Orasot, Realistic Starter VFX Vol 2, a Boat
 
 ## Demonstration:
 
